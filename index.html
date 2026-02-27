@@ -66,11 +66,12 @@
     animation: fadeUp 1s ease both;
   }
 
-  /* SVG LOGO — grano kopi */
+  /* IMAGOTIPO kopi */
   .logo-icon {
-    width: 90px;
-    height: 90px;
-    margin-bottom: 20px;
+    width: 200px;
+    height: auto;
+    margin-bottom: 28px;
+    object-fit: contain;
   }
 
   .logo-text {
@@ -373,19 +374,8 @@
 <header>
   <div class="header-noise"></div>
   <div class="logo-wrap">
-    <!-- Grano kopi — identidad oficial -->
-    <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Círculo base blanco -->
-      <circle cx="50" cy="50" r="46" fill="white"/>
-      <!-- Cuerpo del grano: dos lóbulos que forman la silueta -->
-      <path d="M22 50 C22 32 33 18 50 18 C67 18 78 32 78 50 C78 68 67 82 50 82 C33 82 22 68 22 50 Z" fill="white" stroke="#0a0a0a" stroke-width="0"/>
-      <!-- Lóbulo izquierdo oscuro -->
-      <path d="M22 50 C22 32 33 18 50 18 C50 18 38 30 36 50 C34 70 50 82 50 82 C33 82 22 68 22 50 Z" fill="#0a0a0a"/>
-      <!-- Lóbulo derecho oscuro -->
-      <path d="M78 50 C78 68 67 82 50 82 C50 82 62 70 64 50 C66 30 50 18 50 18 C67 18 78 32 78 50 Z" fill="#0a0a0a"/>
-      <!-- Línea central del grano (crease) -->
-      <path d="M50 18 C42 30 42 70 50 82" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-    </svg>
+    <!-- Imagotipo real kopi -->
+    <img class="logo-icon" src="imagotipokopi.png" alt="kopi coffee.">
     <div class="logo-text">
       kopi
       <span>coffee.</span>
@@ -724,12 +714,15 @@
 
 <!-- FOOTER -->
 <footer>
-  <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="46" fill="#1a1a1a"/>
-    <path d="M22 50 C22 32 33 18 50 18 C67 18 78 32 78 50 C78 68 67 82 50 82 C33 82 22 68 22 50 Z" fill="#1a1a1a"/>
-    <path d="M22 50 C22 32 33 18 50 18 C50 18 38 30 36 50 C34 70 50 82 50 82 C33 82 22 68 22 50 Z" fill="#333"/>
-    <path d="M78 50 C78 68 67 82 50 82 C50 82 62 70 64 50 C66 30 50 18 50 18 C67 18 78 32 78 50 Z" fill="#333"/>
-    <path d="M50 18 C42 30 42 70 50 82" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <svg width="72" height="28" viewBox="0 0 340 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M 40,85 C 22,85 10,68 14,52 C 18,36 40,28 62,42 C 86,58 102,80 132,80 C 162,80 178,58 200,40 C 222,22 250,18 270,32 C 292,48 300,74 290,88 C 283,98 268,98 262,88"
+      stroke="#2a2a2a"
+      stroke-width="26"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+    />
   </svg>
   <p class="f-logo">kopi coffee.</p>
   <p>Plaza Andador · Morelia, Michoacán</p>
