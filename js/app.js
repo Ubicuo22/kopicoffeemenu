@@ -113,12 +113,13 @@ function initMenu() {
                        || section.title;
     // Texto corto para el nav
     const navLabels = {
-      calientes: 'Calientes',
-      frias:     'Frías',
-      batidos:   'Batidos',
-      panaderia: 'Panadería',
-      hotcakes:  'Hotcakes',
-      wraps:     'Wraps',
+      calientes:   'Calientes',
+      frias:       'Frías',
+      batidos:     'Batidos',
+      panaderia:   'Panadería',
+      hotcakes:    'Hotcakes',
+      wraps:       'Wraps',
+      suplementos: 'Suplementos',
     };
     link.textContent = navLabels[section.id] || section.id;
     nav.appendChild(link);

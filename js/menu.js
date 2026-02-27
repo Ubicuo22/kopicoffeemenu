@@ -53,6 +53,7 @@ const MENU = [
       { name: 'Dirty Chai Frío',        price: '$80' },
       { name: 'Monster',                price: '$45' },
       { name: 'Agua Chica',             price: '$15' },
+      { name: 'Agua Mediana',           price: '$20' },
       { name: 'Agua Grande',            price: '$25' },
       { name: 'Tisana Fría',            price: '$60' },
       { name: 'Refrescos',              price: '$25' },
@@ -105,6 +106,21 @@ const MENU = [
     items: [
       { name: 'Wrap',     sub: 'Pollo chipotle · Pollo finas hierbas · Pavo · Atún', price: '$95' },
       { name: 'Ensalada', sub: 'Pollo · Atún',                                       price: '$95' },
+    ]
+  },
+
+  {
+    id:    'suplementos',
+    title: 'Suplementos',
+    sub:   'Por porción / scoop',
+    items: [
+      { name: 'Creatina',    price: '$25' },
+      { name: 'Preentreno',  price: '$25' },
+      { name: 'Proteína',    price: '$25' },
+      { name: 'BCAAs',       price: '$25' },
+      { name: 'Glutamina',   price: '$25' },
+      { name: 'L-Carnitina', price: '$25' },
+      { name: 'Colágeno',    price: '$25' },
     ]
   },
 
