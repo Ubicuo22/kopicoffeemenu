@@ -39,7 +39,7 @@ body  {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.04;
+  opacity: 0.18;
 }
 
 /* ════════════════════════════════
@@ -396,11 +396,10 @@ footer p {
   align-items: center;
   gap: 8px;
   margin-top: 20px;
-  opacity: 0.25;
   transition: opacity 0.2s;
 }
 
-.footer-ubicuo:hover { opacity: 0.6; }
+.footer-ubicuo:hover { opacity: 0.7; }
 .footer-ubicuo img   { width: 22px; height: auto; }
 
 .footer-ubicuo span {
