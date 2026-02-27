@@ -1,0 +1,10 @@
+# Extensiones y herramientas
+.claude/
+.vscode/
+.DS_Store
+
+# Dependencias (si llegas a usar Node.js)
+node_modules/
+
+# Archivos de entorno (contraseñas/llaves)
+.env
