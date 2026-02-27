@@ -396,6 +396,7 @@ footer p {
   align-items: center;
   gap: 8px;
   margin-top: 20px;
+  text-decoration: none;
   transition: opacity 0.2s;
 }
 
@@ -405,7 +406,7 @@ footer p {
 .footer-ubicuo span {
   font-family: 'Behmer', sans-serif;
   font-size: 13px;
-  color: #444;
+  color: var(--white);
   letter-spacing: 0.05em;
 }
 
