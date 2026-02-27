@@ -327,6 +327,22 @@
     color: #2a2a2a;
   }
 
+  .footer-ig {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #2a2a2a;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-ig:hover {
+    color: #888;
+  }
+
   .footer-ubicuo {
     display: flex;
     align-items: center;
@@ -748,7 +764,14 @@
   <img src="imagotipokopi.png" alt="kopi coffee." style="width:60px; height:auto; opacity:0.15; margin-bottom:4px;">
   <p class="f-logo">kopi coffee.</p>
   <p>Plaza Andador · Morelia, Michoacán</p>
-  <p>@kopicoffee</p>
+  <a href="https://www.instagram.com/kopicoffee" target="_blank" rel="noopener" class="footer-ig">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+      <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+    </svg>
+    @kopicoffee
+  </a>
   <div class="footer-ubicuo">
     <img src="ubicuo-logo.svg" alt="Ubicuo Studio">
     <span>Ubicuo Studio · 2026</span>
