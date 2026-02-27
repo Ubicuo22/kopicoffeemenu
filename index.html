@@ -15,6 +15,7 @@
     font-style: normal;
     font-display: swap;
   }
+
   :root {
     --black: #0a0a0a;
     --white: #f5f5f0;
@@ -33,7 +34,7 @@
     overflow-x: hidden;
   }
 
-  /* ── VAPOR PATTERN SVG ── */
+  /* ── VAPOR BG ── */
   .vapor-bg {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -73,7 +74,6 @@
     animation: fadeUp 1s ease both;
   }
 
-  /* IMAGOTIPO kopi */
   .logo-icon {
     width: 200px;
     height: auto;
@@ -103,15 +103,6 @@
     margin-top: 6px;
   }
 
-  .tagline {
-    margin-top: 32px;
-    font-size: 11px;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--mid);
-    animation: fadeUp 1s ease 0.3s both;
-  }
-
   .location {
     margin-top: 10px;
     font-size: 10px;
@@ -134,7 +125,7 @@
     z-index: 2;
   }
 
-  /* ── NAV TABS ── */
+  /* ── NAV ── */
   nav {
     position: sticky;
     top: 0;
@@ -162,16 +153,10 @@
     white-space: nowrap;
   }
 
-  nav a:hover {
-    color: var(--white);
-    background: #111;
-  }
+  nav a:hover { color: var(--white); background: #111; }
 
   /* ── SECTIONS ── */
-  main {
-    position: relative;
-    z-index: 10;
-  }
+  main { position: relative; z-index: 10; }
 
   section {
     padding: 80px 40px;
@@ -213,26 +198,29 @@
   }
 
   /* ── ITEMS ── */
-  .item-list {
-    display: flex;
-    flex-direction: column;
-  }
+  .item-list { display: flex; flex-direction: column; }
 
   .item {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: 16px 0;
+    flex-direction: column;
     border-bottom: 1px solid #131313;
-    gap: 16px;
-    transition: background 0.15s;
-    cursor: default;
   }
 
   .item:last-child { border-bottom: none; }
 
-  .item:hover .item-name { color: var(--white); }
-  .item:hover .item-price { color: var(--white); }
+  /* ── ITEM ROW (clickeable) ── */
+  .item-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 16px 0;
+    gap: 16px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+
+  .item-row:hover .item-name { color: var(--white); }
+  .item-row:hover .item-price { color: var(--white); }
 
   .item-name {
     font-size: 13px;
@@ -267,7 +255,79 @@
     white-space: nowrap;
   }
 
-  /* ── GRID for wide sections ── */
+  .item-toggle {
+    font-size: 18px;
+    font-weight: 300;
+    color: #333;
+    transition: transform 0.35s ease, color 0.2s;
+    flex-shrink: 0;
+    margin-left: 12px;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .item.open .item-toggle {
+    transform: rotate(45deg);
+    color: #666;
+  }
+
+  /* ── ITEM DETAIL (expandible) ── */
+  .item-detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .item.open .item-detail {
+    max-height: 320px;
+  }
+
+  .detail-inner {
+    display: flex;
+    gap: 20px;
+    padding: 4px 0 24px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .detail-media {
+    flex-shrink: 0;
+    width: 140px;
+    height: 140px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #111;
+  }
+
+  .detail-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .detail-desc {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .detail-desc p {
+    font-size: 11px;
+    line-height: 1.8;
+    color: #555;
+    letter-spacing: 0.03em;
+  }
+
+  /* Mobile: stacked */
+  @media (max-width: 480px) {
+    .detail-inner { flex-direction: column; }
+    .detail-media { width: 100%; height: 200px; }
+    .item.open .item-detail { max-height: 520px; }
+  }
+
+  /* ── GRID ── */
   .item-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -288,15 +348,6 @@
     color: #444;
     padding: 16px 0;
     border-top: 1px solid #1a1a1a;
-  }
-
-  /* ── SIZES tag ── */
-  .size-tag {
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    color: #3a3a3a;
-    text-transform: uppercase;
-    margin-left: 8px;
   }
 
   /* ── FOOTER ── */
@@ -334,14 +385,14 @@
     font-size: 10px;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: #2a2a2a;
+    color: #ff3ea5;
     text-decoration: none;
-    transition: color 0.2s;
+    transition: color 0.2s, opacity 0.2s;
   }
 
-  .footer-ig:hover {
-    color: #888;
-  }
+  .footer-ig svg { color: #ff3ea5; }
+
+  .footer-ig:hover { opacity: 0.7; }
 
   .footer-ubicuo {
     display: flex;
@@ -352,14 +403,9 @@
     transition: opacity 0.2s;
   }
 
-  .footer-ubicuo:hover {
-    opacity: 0.6;
-  }
+  .footer-ubicuo:hover { opacity: 0.6; }
 
-  .footer-ubicuo img {
-    width: 22px;
-    height: auto;
-  }
+  .footer-ubicuo img { width: 22px; height: auto; }
 
   .footer-ubicuo span {
     font-family: 'Behmer', sans-serif;
@@ -379,24 +425,15 @@
     50% { opacity: 0.8; }
   }
 
-  /* Reveal on scroll */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
+
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  /* ── VAPOR PATTERN in sections ── */
-  .vapor-divider {
-    width: 100%;
-    height: 40px;
-    opacity: 0.07;
-    margin: 0;
-    display: block;
   }
 </style>
 </head>
@@ -404,10 +441,7 @@
 
 <!-- Fixed vapor background -->
 <svg class="vapor-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-  <defs>
-    <filter id="blur1"><feGaussianBlur stdDeviation="2"/></filter>
-  </defs>
-  <!-- Wave pattern repeated -->
+  <defs><filter id="blur1"><feGaussianBlur stdDeviation="2"/></filter></defs>
   <g filter="url(#blur1)" stroke="white" fill="none">
     <path stroke-width="6" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" opacity="0.6"/>
     <path stroke-width="4" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,120)" opacity="0.4"/>
@@ -422,7 +456,6 @@
 <header>
   <div class="header-noise"></div>
   <div class="logo-wrap">
-    <!-- Imagotipo real kopi -->
     <img class="logo-icon" src="imagotipokopi.png" alt="kopi coffee.">
     <div class="logo-text">
       kopi
@@ -454,75 +487,202 @@
     <div class="section-sub reveal">Chica / Grande</div>
 
     <div class="item-list reveal">
+
       <div class="item">
-        <span class="item-name">Expreso</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$40</span>
+        <div class="item-row">
+          <span class="item-name">Expreso</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$40</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Expreso"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Expreso Cortado</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$45</span>
+        <div class="item-row">
+          <span class="item-name">Expreso Cortado</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Expreso Cortado"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Americano</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$50 / $55</span>
+        <div class="item-row">
+          <span class="item-name">Americano</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$50 / $55</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Americano"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Capuchino</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$65 / $70</span>
+        <div class="item-row">
+          <span class="item-name">Capuchino</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$65 / $70</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Capuchino"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Latte</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$65 / $70</span>
+        <div class="item-row">
+          <span class="item-name">Latte</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$65 / $70</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Latte"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Matcha</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$65 / $70</span>
+        <div class="item-row">
+          <span class="item-name">Matcha</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$65 / $70</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Matcha"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Chai</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$65 / $70</span>
+        <div class="item-row">
+          <span class="item-name">Chai</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$65 / $70</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Chai"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Caramel Macchiato</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$65 / $70</span>
+        <div class="item-row">
+          <span class="item-name">Caramel Macchiato</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$65 / $70</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Caramel Macchiato"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Leche Dorada</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$65 / $70</span>
+        <div class="item-row">
+          <span class="item-name">Leche Dorada</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$65 / $70</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Leche Dorada"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Dirty Chai</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$70 / $75</span>
+        <div class="item-row">
+          <span class="item-name">Dirty Chai</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$70 / $75</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Dirty Chai"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Chocolate de Metate
-          <span class="item-sub">Agua</span>
-        </span>
-        <span class="item-dots"></span>
-        <span class="item-price">$60 / $65</span>
+        <div class="item-row">
+          <span class="item-name">Chocolate de Metate <span class="item-sub">Agua</span></span>
+          <span class="item-dots"></span>
+          <span class="item-price">$60 / $65</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Chocolate de Metate Agua"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Chocolate de Metate
-          <span class="item-sub">Leche</span>
-        </span>
-        <span class="item-dots"></span>
-        <span class="item-price">$65 / $70</span>
+        <div class="item-row">
+          <span class="item-name">Chocolate de Metate <span class="item-sub">Leche</span></span>
+          <span class="item-dots"></span>
+          <span class="item-price">$65 / $70</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Chocolate de Metate Leche"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Tisana</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$60 / $65</span>
+        <div class="item-row">
+          <span class="item-name">Tisana</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$60 / $65</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Tisana"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -534,81 +694,232 @@
     </div>
 
     <div class="item-list reveal">
+
       <div class="item">
-        <span class="item-name">Frappuccino</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$75</span>
+        <div class="item-row">
+          <span class="item-name">Frappuccino</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Frappuccino"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Latte Frío</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$75</span>
+        <div class="item-row">
+          <span class="item-name">Latte Frío</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Latte Frío"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Matcha Frío</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$75</span>
+        <div class="item-row">
+          <span class="item-name">Matcha Frío</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Matcha Frío"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Chai Frío</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$75</span>
+        <div class="item-row">
+          <span class="item-name">Chai Frío</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Chai Frío"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Caramel Macchiato Frío</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$75</span>
+        <div class="item-row">
+          <span class="item-name">Caramel Macchiato Frío</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Caramel Macchiato Frío"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Chocolate Blanco</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$75</span>
+        <div class="item-row">
+          <span class="item-name">Chocolate Blanco</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Chocolate Blanco"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Leche Dorada Fría</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$75</span>
+        <div class="item-row">
+          <span class="item-name">Leche Dorada Fría</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Leche Dorada Fría"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Smoothies</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$75</span>
+        <div class="item-row">
+          <span class="item-name">Smoothies</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Smoothies"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Malteadas</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$75</span>
+        <div class="item-row">
+          <span class="item-name">Malteadas</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Malteadas"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Dirty Chai Frío</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$80</span>
+        <div class="item-row">
+          <span class="item-name">Dirty Chai Frío</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$80</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Dirty Chai Frío"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Monster</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$45</span>
+        <div class="item-row">
+          <span class="item-name">Monster</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Monster"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Agua Chica</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$15</span>
+        <div class="item-row">
+          <span class="item-name">Agua Chica</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$15</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Agua Chica"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Agua Grande</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$25</span>
+        <div class="item-row">
+          <span class="item-name">Agua Grande</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$25</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Agua Grande"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Tisana Fría</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$60</span>
+        <div class="item-row">
+          <span class="item-name">Tisana Fría</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$60</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Tisana Fría"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Refrescos</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$25</span>
+        <div class="item-row">
+          <span class="item-name">Refrescos</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$25</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Refrescos"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -622,48 +933,130 @@
 
     <div class="item-grid reveal">
       <div class="item-list">
+
         <div class="item">
-          <span class="item-name">Chocolate</span>
-          <span class="item-dots"></span>
-          <span class="item-price">$75</span>
+          <div class="item-row">
+            <span class="item-name">Chocolate</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$75</span>
+            <span class="item-toggle">+</span>
+          </div>
+          <div class="item-detail">
+            <div class="detail-inner">
+              <div class="detail-media"><img src="producto_generico.png" alt="Chocolate"></div>
+              <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+            </div>
+          </div>
         </div>
+
         <div class="item">
-          <span class="item-name">Fresa</span>
-          <span class="item-dots"></span>
-          <span class="item-price">$75</span>
+          <div class="item-row">
+            <span class="item-name">Fresa</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$75</span>
+            <span class="item-toggle">+</span>
+          </div>
+          <div class="item-detail">
+            <div class="detail-inner">
+              <div class="detail-media"><img src="producto_generico.png" alt="Fresa"></div>
+              <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+            </div>
+          </div>
         </div>
+
         <div class="item">
-          <span class="item-name">Frutos Rojos</span>
-          <span class="item-dots"></span>
-          <span class="item-price">$75</span>
+          <div class="item-row">
+            <span class="item-name">Frutos Rojos</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$75</span>
+            <span class="item-toggle">+</span>
+          </div>
+          <div class="item-detail">
+            <div class="detail-inner">
+              <div class="detail-media"><img src="producto_generico.png" alt="Frutos Rojos"></div>
+              <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+            </div>
+          </div>
         </div>
+
         <div class="item">
-          <span class="item-name">Crema de Maní / Plátano</span>
-          <span class="item-dots"></span>
-          <span class="item-price">$75</span>
+          <div class="item-row">
+            <span class="item-name">Crema de Maní / Plátano</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$75</span>
+            <span class="item-toggle">+</span>
+          </div>
+          <div class="item-detail">
+            <div class="detail-inner">
+              <div class="detail-media"><img src="producto_generico.png" alt="Crema de Maní / Plátano"></div>
+              <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+            </div>
+          </div>
         </div>
+
       </div>
       <div class="item-list">
+
         <div class="item">
-          <span class="item-name">Mango / Fresa</span>
-          <span class="item-dots"></span>
-          <span class="item-price">$75</span>
+          <div class="item-row">
+            <span class="item-name">Mango / Fresa</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$75</span>
+            <span class="item-toggle">+</span>
+          </div>
+          <div class="item-detail">
+            <div class="detail-inner">
+              <div class="detail-media"><img src="producto_generico.png" alt="Mango / Fresa"></div>
+              <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+            </div>
+          </div>
         </div>
+
         <div class="item">
-          <span class="item-name">Guayaba</span>
-          <span class="item-dots"></span>
-          <span class="item-price">$75</span>
+          <div class="item-row">
+            <span class="item-name">Guayaba</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$75</span>
+            <span class="item-toggle">+</span>
+          </div>
+          <div class="item-detail">
+            <div class="detail-inner">
+              <div class="detail-media"><img src="producto_generico.png" alt="Guayaba"></div>
+              <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+            </div>
+          </div>
         </div>
+
         <div class="item">
-          <span class="item-name">Fresa / Coco</span>
-          <span class="item-dots"></span>
-          <span class="item-price">$75</span>
+          <div class="item-row">
+            <span class="item-name">Fresa / Coco</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$75</span>
+            <span class="item-toggle">+</span>
+          </div>
+          <div class="item-detail">
+            <div class="detail-inner">
+              <div class="detail-media"><img src="producto_generico.png" alt="Fresa / Coco"></div>
+              <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+            </div>
+          </div>
         </div>
+
         <div class="item">
-          <span class="item-name">Mango</span>
-          <span class="item-dots"></span>
-          <span class="item-price">$75</span>
+          <div class="item-row">
+            <span class="item-name">Mango</span>
+            <span class="item-dots"></span>
+            <span class="item-price">$75</span>
+            <span class="item-toggle">+</span>
+          </div>
+          <div class="item-detail">
+            <div class="detail-inner">
+              <div class="detail-media"><img src="producto_generico.png" alt="Mango"></div>
+              <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+            </div>
+          </div>
         </div>
+
       </div>
     </div>
 
@@ -678,41 +1071,112 @@
     </div>
 
     <div class="item-list reveal">
+
       <div class="item">
-        <span class="item-name">Concha</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$30</span>
+        <div class="item-row">
+          <span class="item-name">Concha</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$30</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Concha"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Muffin</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$35</span>
+        <div class="item-row">
+          <span class="item-name">Muffin</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$35</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Muffin"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Croissant</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$45</span>
+        <div class="item-row">
+          <span class="item-name">Croissant</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Croissant"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Chocolatín</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$45</span>
+        <div class="item-row">
+          <span class="item-name">Chocolatín</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Chocolatín"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Rol con Chispas</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$45</span>
+        <div class="item-row">
+          <span class="item-name">Rol con Chispas</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Rol con Chispas"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Frangipán</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$50</span>
+        <div class="item-row">
+          <span class="item-name">Frangipán</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$50</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Frangipán"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Rebanada de Pastel</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$45</span>
+        <div class="item-row">
+          <span class="item-name">Rebanada de Pastel</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$45</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Rebanada de Pastel"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -724,11 +1188,22 @@
     </div>
 
     <div class="item-list reveal">
+
       <div class="item">
-        <span class="item-name">Hotcakes / Waffles</span>
-        <span class="item-dots"></span>
-        <span class="item-price">$75</span>
+        <div class="item-row">
+          <span class="item-name">Hotcakes / Waffles</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Hotcakes / Waffles"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -740,20 +1215,37 @@
     </div>
 
     <div class="item-list reveal">
+
       <div class="item">
-        <span class="item-name">Wrap
-          <span class="item-sub">Pollo chipotle · Pollo finas hierbas · Pavo · Atún</span>
-        </span>
-        <span class="item-dots"></span>
-        <span class="item-price">$95</span>
+        <div class="item-row">
+          <span class="item-name">Wrap <span class="item-sub">Pollo chipotle · Pollo finas hierbas · Pavo · Atún</span></span>
+          <span class="item-dots"></span>
+          <span class="item-price">$95</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Wrap"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
       <div class="item">
-        <span class="item-name">Ensalada
-          <span class="item-sub">Pollo · Atún</span>
-        </span>
-        <span class="item-dots"></span>
-        <span class="item-price">$95</span>
+        <div class="item-row">
+          <span class="item-name">Ensalada <span class="item-sub">Pollo · Atún</span></span>
+          <span class="item-dots"></span>
+          <span class="item-price">$95</span>
+          <span class="item-toggle">+</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-inner">
+            <div class="detail-media"><img src="producto_generico.png" alt="Ensalada"></div>
+            <div class="detail-desc"><p>Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.</p></div>
+          </div>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -764,7 +1256,7 @@
   <img src="imagotipokopi.png" alt="kopi coffee." style="width:60px; height:auto; opacity:0.15; margin-bottom:4px;">
   <p class="f-logo">kopi coffee.</p>
   <p>Plaza Andador · Morelia, Michoacán</p>
-  <a href="https://www.instagram.com/kopicoffee" target="_blank" rel="noopener" class="footer-ig">
+  <a href="https://www.instagram.com/kopi_coffee_andador?igsh=MWJpYzVhZDh3eDNsOA==" target="_blank" rel="noopener" class="footer-ig">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
       <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/>
@@ -782,9 +1274,8 @@
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.style.transitionDelay = '0ms';
         entry.target.classList.add('visible');
         observer.unobserve(entry.target);
       }
@@ -793,11 +1284,19 @@
 
   reveals.forEach(el => observer.observe(el));
 
-  // Stagger reveals in same section
   document.querySelectorAll('section').forEach(section => {
-    const items = section.querySelectorAll('.reveal');
-    items.forEach((el, i) => {
+    section.querySelectorAll('.reveal').forEach((el, i) => {
       el.style.transitionDelay = (i * 80) + 'ms';
+    });
+  });
+
+  // Expandibles — solo uno abierto a la vez
+  document.querySelectorAll('.item-row').forEach(row => {
+    row.addEventListener('click', () => {
+      const item = row.closest('.item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
     });
   });
 </script>
