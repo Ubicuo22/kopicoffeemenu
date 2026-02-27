@@ -21,8 +21,8 @@ const MENU = [
     title: 'Bebidas\nCalientes',
     sub:   'Chica / Grande',
     items: [
-      { name: 'Expreso',                              price: '$40'        },
-      { name: 'Expreso Cortado',                      price: '$45'        },
+      { name: 'Espresso',                             price: '$40'        },
+      { name: 'Espresso Cortado',                     price: '$45'        },
       { name: 'Americano',                            price: '$50 / $55'  },
       { name: 'Capuchino',                            price: '$65 / $70'  },
       { name: 'Latte',                                price: '$65 / $70'  },
@@ -93,9 +93,9 @@ const MENU = [
 
   {
     id:    'hotcakes',
-    title: 'Hotcakes\n& Waffles',
+    title: 'Hotcakes',
     items: [
-      { name: 'Hotcakes / Waffles', price: '$75' },
+      { name: 'Hotcakes', price: '$75' },
     ]
   },
 
