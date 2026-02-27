@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kopi coffee. — menú</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,700;0,800;0,900;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f5f0;
+    --gray: #1a1a1a;
+    --mid: #888;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Space Mono', monospace;
+    overflow-x: hidden;
+  }
+
+  /* ── VAPOR PATTERN SVG ── */
+  .vapor-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.04;
+  }
+
+  /* ── HERO ── */
+  header {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
+    border-bottom: 1px solid #222;
+    overflow: hidden;
+  }
+
+  .header-noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    opacity: 0.3;
+    z-index: 0;
+  }
+
+  .logo-wrap {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeUp 1s ease both;
+  }
+
+  /* SVG LOGO — grano kopi */
+  .logo-icon {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 20px;
+  }
+
+  .logo-text {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 900;
+    font-size: clamp(80px, 15vw, 172px);
+    letter-spacing: -4px;
+    line-height: 0.88;
+    text-align: center;
+    color: var(--white);
+    text-transform: lowercase;
+  }
+
+  .logo-text span {
+    display: block;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
+    font-size: 0.22em;
+    letter-spacing: 0.35em;
+    color: var(--mid);
+    text-transform: lowercase;
+    margin-top: 6px;
+  }
+
+  .tagline {
+    margin-top: 32px;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mid);
+    animation: fadeUp 1s ease 0.3s both;
+  }
+
+  .location {
+    margin-top: 10px;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: #444;
+    animation: fadeUp 1s ease 0.5s both;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #333;
+    animation: pulse 2s infinite;
+    z-index: 2;
+  }
+
+  /* ── NAV TABS ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--black);
+    border-bottom: 1px solid #1e1e1e;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  nav::-webkit-scrollbar { display: none; }
+
+  nav a {
+    flex-shrink: 0;
+    padding: 18px 24px;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    border-right: 1px solid #1a1a1a;
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap;
+  }
+
+  nav a:hover {
+    color: var(--white);
+    background: #111;
+  }
+
+  /* ── SECTIONS ── */
+  main {
+    position: relative;
+    z-index: 10;
+  }
+
+  section {
+    padding: 80px 40px;
+    border-bottom: 1px solid #161616;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .section-label h2 {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 900;
+    font-size: clamp(34px, 5.5vw, 68px);
+    letter-spacing: -1px;
+    line-height: 0.95;
+    color: var(--white);
+    text-transform: lowercase;
+  }
+
+  .section-label .line {
+    flex: 1;
+    height: 1px;
+    background: #222;
+  }
+
+  .section-sub {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+
+  /* ── ITEMS ── */
+  .item-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid #131313;
+    gap: 16px;
+    transition: background 0.15s;
+    cursor: default;
+  }
+
+  .item:last-child { border-bottom: none; }
+
+  .item:hover .item-name { color: var(--white); }
+  .item:hover .item-price { color: var(--white); }
+
+  .item-name {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: #ccc;
+    transition: color 0.15s;
+    flex: 1;
+  }
+
+  .item-sub {
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: #555;
+    font-style: italic;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .item-dots {
+    flex: 1;
+    border-bottom: 1px dotted #2a2a2a;
+    margin: 0 12px 4px;
+  }
+
+  .item-price {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+    color: #888;
+    transition: color 0.15s;
+    white-space: nowrap;
+  }
+
+  /* ── GRID for wide sections ── */
+  .item-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 60px;
+  }
+
+  @media (max-width: 640px) {
+    .item-grid { grid-template-columns: 1fr; }
+    section { padding: 60px 24px; }
+    nav a { padding: 16px 16px; }
+  }
+
+  /* ── NOTA ── */
+  .nota {
+    margin-top: 32px;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: #444;
+    padding: 16px 0;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  /* ── SIZES tag ── */
+  .size-tag {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: #3a3a3a;
+    text-transform: uppercase;
+    margin-left: 8px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 10;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  footer .f-logo {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    letter-spacing: -0.5px;
+    color: #222;
+    text-transform: lowercase;
+  }
+
+  footer p {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #2a2a2a;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+
+  /* Reveal on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── VAPOR PATTERN in sections ── */
+  .vapor-divider {
+    width: 100%;
+    height: 40px;
+    opacity: 0.07;
+    margin: 0;
+    display: block;
+  }
+</style>
+</head>
+<body>
+
+<!-- Fixed vapor background -->
+<svg class="vapor-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <filter id="blur1"><feGaussianBlur stdDeviation="2"/></filter>
+  </defs>
+  <!-- Wave pattern repeated -->
+  <g filter="url(#blur1)" stroke="white" fill="none">
+    <path stroke-width="6" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" opacity="0.6"/>
+    <path stroke-width="4" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,120)" opacity="0.4"/>
+    <path stroke-width="3" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,240)" opacity="0.3"/>
+    <path stroke-width="2" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,360)" opacity="0.2"/>
+    <path stroke-width="6" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,480)" opacity="0.15"/>
+    <path stroke-width="4" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,600)" opacity="0.1"/>
+  </g>
+</svg>
+
+<!-- HEADER -->
+<header>
+  <div class="header-noise"></div>
+  <div class="logo-wrap">
+    <!-- Grano kopi — identidad oficial -->
+    <svg class="logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Círculo base blanco -->
+      <circle cx="50" cy="50" r="46" fill="white"/>
+      <!-- Cuerpo del grano: dos lóbulos que forman la silueta -->
+      <path d="M22 50 C22 32 33 18 50 18 C67 18 78 32 78 50 C78 68 67 82 50 82 C33 82 22 68 22 50 Z" fill="white" stroke="#0a0a0a" stroke-width="0"/>
+      <!-- Lóbulo izquierdo oscuro -->
+      <path d="M22 50 C22 32 33 18 50 18 C50 18 38 30 36 50 C34 70 50 82 50 82 C33 82 22 68 22 50 Z" fill="#0a0a0a"/>
+      <!-- Lóbulo derecho oscuro -->
+      <path d="M78 50 C78 68 67 82 50 82 C50 82 62 70 64 50 C66 30 50 18 50 18 C67 18 78 32 78 50 Z" fill="#0a0a0a"/>
+      <!-- Línea central del grano (crease) -->
+      <path d="M50 18 C42 30 42 70 50 82" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="logo-text">
+      kopi
+      <span>coffee.</span>
+    </div>
+  </div>
+  <p class="tagline">Negro. Blanco. Y lo que el momento pida.</p>
+  <p class="location">Plaza Andador · Morelia · Michoacán</p>
+  <p class="scroll-hint">↓ ver menú</p>
+</header>
+
+<!-- NAV -->
+<nav>
+  <a href="#calientes">Calientes</a>
+  <a href="#frias">Frías</a>
+  <a href="#batidos">Batidos</a>
+  <a href="#panaderia">Panadería</a>
+  <a href="#hotcakes">Hotcakes</a>
+  <a href="#wraps">Wraps</a>
+</nav>
+
+<main>
+
+  <!-- BEBIDAS CALIENTES -->
+  <section id="calientes">
+    <div class="section-label reveal">
+      <h2>Bebidas<br>Calientes</h2>
+      <div class="line"></div>
+    </div>
+    <div class="section-sub reveal">Chica / Grande</div>
+
+    <div class="item-list reveal">
+      <div class="item">
+        <span class="item-name">Expreso</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$40</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Expreso Cortado</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$45</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Americano</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$50 / $55</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Capuchino</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$65 / $70</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Latte</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$65 / $70</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Matcha</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$65 / $70</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Chai</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$65 / $70</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Caramel Macchiato</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$65 / $70</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Leche Dorada</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$65 / $70</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Dirty Chai</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$70 / $75</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Chocolate de Metate
+          <span class="item-sub">Agua</span>
+        </span>
+        <span class="item-dots"></span>
+        <span class="item-price">$60 / $65</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Chocolate de Metate
+          <span class="item-sub">Leche</span>
+        </span>
+        <span class="item-dots"></span>
+        <span class="item-price">$65 / $70</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Tisana</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$60 / $65</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEBIDAS FRÍAS -->
+  <section id="frias">
+    <div class="section-label reveal">
+      <h2>Bebidas<br>Frías</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="item-list reveal">
+      <div class="item">
+        <span class="item-name">Frappuccino</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$75</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Latte Frío</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$75</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Matcha Frío</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$75</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Chai Frío</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$75</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Caramel Macchiato Frío</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$75</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Chocolate Blanco</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$75</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Leche Dorada Fría</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$75</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Smoothies</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$75</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Malteadas</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$75</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Dirty Chai Frío</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$80</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Monster</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$45</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Agua Chica</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$15</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Agua Grande</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$25</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Tisana Fría</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$60</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Refrescos</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$25</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BATIDOS -->
+  <section id="batidos">
+    <div class="section-label reveal">
+      <h2>Batidos</h2>
+      <div class="line"></div>
+    </div>
+    <div class="section-sub reveal">Todos · $75</div>
+
+    <div class="item-grid reveal">
+      <div class="item-list">
+        <div class="item">
+          <span class="item-name">Chocolate</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+        </div>
+        <div class="item">
+          <span class="item-name">Fresa</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+        </div>
+        <div class="item">
+          <span class="item-name">Frutos Rojos</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+        </div>
+        <div class="item">
+          <span class="item-name">Crema de Maní / Plátano</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+        </div>
+      </div>
+      <div class="item-list">
+        <div class="item">
+          <span class="item-name">Mango / Fresa</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+        </div>
+        <div class="item">
+          <span class="item-name">Guayaba</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+        </div>
+        <div class="item">
+          <span class="item-name">Fresa / Coco</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+        </div>
+        <div class="item">
+          <span class="item-name">Mango</span>
+          <span class="item-dots"></span>
+          <span class="item-price">$75</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nota reveal">* Extra proteína — $25</div>
+  </section>
+
+  <!-- PANADERÍA -->
+  <section id="panaderia">
+    <div class="section-label reveal">
+      <h2>Panadería</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="item-list reveal">
+      <div class="item">
+        <span class="item-name">Concha</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$30</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Muffin</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$35</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Croissant</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$45</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Chocolatín</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$45</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Rol con Chispas</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$45</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Frangipán</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$50</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Rebanada de Pastel</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$45</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOTCAKES -->
+  <section id="hotcakes">
+    <div class="section-label reveal">
+      <h2>Hotcakes<br>& Waffles</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="item-list reveal">
+      <div class="item">
+        <span class="item-name">Hotcakes / Waffles</span>
+        <span class="item-dots"></span>
+        <span class="item-price">$75</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WRAPS Y ENSALADAS -->
+  <section id="wraps">
+    <div class="section-label reveal">
+      <h2>Wraps &<br>Ensaladas</h2>
+      <div class="line"></div>
+    </div>
+
+    <div class="item-list reveal">
+      <div class="item">
+        <span class="item-name">Wrap
+          <span class="item-sub">Pollo chipotle · Pollo finas hierbas · Pavo · Atún</span>
+        </span>
+        <span class="item-dots"></span>
+        <span class="item-price">$95</span>
+      </div>
+      <div class="item">
+        <span class="item-name">Ensalada
+          <span class="item-sub">Pollo · Atún</span>
+        </span>
+        <span class="item-dots"></span>
+        <span class="item-price">$95</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="50" cy="50" r="46" fill="#1a1a1a"/>
+    <path d="M22 50 C22 32 33 18 50 18 C67 18 78 32 78 50 C78 68 67 82 50 82 C33 82 22 68 22 50 Z" fill="#1a1a1a"/>
+    <path d="M22 50 C22 32 33 18 50 18 C50 18 38 30 36 50 C34 70 50 82 50 82 C33 82 22 68 22 50 Z" fill="#333"/>
+    <path d="M78 50 C78 68 67 82 50 82 C50 82 62 70 64 50 C66 30 50 18 50 18 C67 18 78 32 78 50 Z" fill="#333"/>
+    <path d="M50 18 C42 30 42 70 50 82" stroke="#1a1a1a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  </svg>
+  <p class="f-logo">kopi coffee.</p>
+  <p>Plaza Andador · Morelia, Michoacán</p>
+  <p>@kopicoffee</p>
+  <p style="margin-top:16px; color:#1e1e1e;">kopi coffee. × Ubicuo Studio · 2025</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        entry.target.style.transitionDelay = '0ms';
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Stagger reveals in same section
+  document.querySelectorAll('section').forEach(section => {
+    const items = section.querySelectorAll('.reveal');
+    items.forEach((el, i) => {
+      el.style.transitionDelay = (i * 80) + 'ms';
+    });
+  });
+</script>
+</body>
+</html>
