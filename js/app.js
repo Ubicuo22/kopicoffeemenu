@@ -65,8 +65,8 @@ function buildDetailPanel(item) {
   const desc = item.dataset.desc || DESC_DEFAULT;
 
   const mediaEl = type === 'video'
-    ? `<video src="${src}" autoplay muted loop playsinline></video>`
-    : `<img src="${src}" alt="">`;
+    ? `<video src="${src}" autoplay muted loop playsinline preload="none"></video>`
+    : `<img src="${src}" alt="" loading="lazy">`;
 
   const panel = document.createElement('div');
   panel.className = 'item-detail';

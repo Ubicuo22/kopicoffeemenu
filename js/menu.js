@@ -51,7 +51,7 @@ const MENU = [
       { name: 'Smoothies',              price: '$75' },
       { name: 'Malteadas',              price: '$75' },
       { name: 'Dirty Chai Frío',        price: '$80' },
-      { name: 'Monster',                price: '$45', src: 'media/monster.mov', type: 'video', desc: 'La dosis exacta de cafeína, taurina y adrenalina que necesitas para no parar. Siérvelo frío, siéntelo rápido.' },
+      { name: 'Monster',                price: '$45', src: 'media/monster.mp4', type: 'video', desc: 'La dosis exacta de cafeína, taurina y adrenalina que necesitas para no parar. Siérvelo frío, siéntelo rápido.' },
       { name: 'Agua Chica',             price: '$15' },
       { name: 'Agua Mediana',           price: '$20' },
       { name: 'Agua Grande',            price: '$25' },
@@ -113,11 +113,11 @@ const MENU = [
     title: 'Suplementos',
     sub:   'Todos · $25 · por porción / scoop',
     items: [
-      { name: 'Creatina',    src: 'media/creatina.mov',    type: 'video', desc: 'Creatina monohidratada de grado farmacéutico. Aumenta la producción de ATP en tus músculos para mayor fuerza, rendimiento y recuperación. El suplemento más respaldado por la ciencia.' },
-      { name: 'Preentreno',  src: 'media/preeworkout.MOV', type: 'video', desc: 'Fórmula explosiva con B-Alanina, Creatina, Arginina y Cafeína. Activa tu circulación, retrasa la fatiga y reduce el dolor muscular hasta un 40% en las 24-48 horas post entrenamiento.' },
-      { name: 'Proteína',    src: 'media/proteina.mov',    type: 'video', desc: 'Whey isolate con 27g de proteína y 5g de BCAAs por porción, sin azúcares. Diseñado para la recuperación muscular rápida y el rendimiento en entrenamientos de alta demanda.' },
-      { name: 'BCAAs',       src: 'media/bcaas.mov',       type: 'video', desc: 'Leucina, isoleucina y valina: los tres aminoácidos esenciales para proteger el músculo, reducir la fatiga y acelerar la recuperación. Con electrolitos para una hidratación óptima.' },
-      { name: 'Colágeno',    src: 'media/colageno.mov',    type: 'video', desc: 'Colágeno hidrolizado de alta biodisponibilidad con vitamina C, biotina y ácido hialurónico. Cuida tus articulaciones, piel, cabello y uñas desde adentro hacia afuera.' },
+      { name: 'Creatina',    src: 'media/creatina.mp4',    type: 'video', desc: 'Creatina monohidratada de grado farmacéutico. Aumenta la producción de ATP en tus músculos para mayor fuerza, rendimiento y recuperación. El suplemento más respaldado por la ciencia.' },
+      { name: 'Preentreno',  src: 'media/preeworkout.mp4', type: 'video', desc: 'Fórmula explosiva con B-Alanina, Creatina, Arginina y Cafeína. Activa tu circulación, retrasa la fatiga y reduce el dolor muscular hasta un 40% en las 24-48 horas post entrenamiento.' },
+      { name: 'Proteína',    src: 'media/proteina.mp4',    type: 'video', desc: 'Whey isolate con 27g de proteína y 5g de BCAAs por porción, sin azúcares. Diseñado para la recuperación muscular rápida y el rendimiento en entrenamientos de alta demanda.' },
+      { name: 'BCAAs',       src: 'media/bcaas.mp4',       type: 'video', desc: 'Leucina, isoleucina y valina: los tres aminoácidos esenciales para proteger el músculo, reducir la fatiga y acelerar la recuperación. Con electrolitos para una hidratación óptima.' },
+      { name: 'Colágeno',    src: 'media/colageno.mp4',    type: 'video', desc: 'Colágeno hidrolizado de alta biodisponibilidad con vitamina C, biotina y ácido hialurónico. Cuida tus articulaciones, piel, cabello y uñas desde adentro hacia afuera.' },
     ]
   },
 
