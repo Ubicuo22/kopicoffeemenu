@@ -51,7 +51,7 @@ const MENU = [
       { name: 'Smoothies',              price: '$75' },
       { name: 'Malteadas',              price: '$75' },
       { name: 'Dirty Chai Frío',        price: '$80' },
-      { name: 'Monster',                price: '$45' },
+      { name: 'Monster',                price: '$45', src: 'media/monster.mov', type: 'video' },
       { name: 'Agua Chica',             price: '$15' },
       { name: 'Agua Mediana',           price: '$20' },
       { name: 'Agua Grande',            price: '$25' },
