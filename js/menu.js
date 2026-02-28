@@ -116,7 +116,7 @@ const MENU = [
     items: [
       { name: 'Creatina',    price: '$25' },
       { name: 'Preentreno',  price: '$25' },
-      { name: 'Proteína',    price: '$25' },
+      { name: 'Proteína',    price: '$25', src: 'media/proteina.mov', type: 'video', desc: 'Un scoop es todo lo que necesitas. Impulsa tu recuperación, construye músculo y mantén tu cuerpo en su mejor versión.' },
       { name: 'BCAAs',       price: '$25' },
       { name: 'Glutamina',   price: '$25' },
       { name: 'L-Carnitina', price: '$25' },
