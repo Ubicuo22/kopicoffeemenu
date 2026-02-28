@@ -118,7 +118,6 @@ const MENU = [
       { name: 'Proteína',    src: 'media/proteina.mov',    type: 'video', desc: 'Whey isolate con 27g de proteína y 5g de BCAAs por porción, sin azúcares. Diseñado para la recuperación muscular rápida y el rendimiento en entrenamientos de alta demanda.' },
       { name: 'BCAAs',       src: 'media/bcaas.mov',       type: 'video', desc: 'Leucina, isoleucina y valina: los tres aminoácidos esenciales para proteger el músculo, reducir la fatiga y acelerar la recuperación. Con electrolitos para una hidratación óptima.' },
       { name: 'Glutamina',   src: 'media/glutamina.mov',   type: 'video', desc: 'Aminoácido clave para la recuperación y el sistema inmune. Reduce el catabolismo muscular y prepara tu cuerpo para rendir al máximo en cada sesión.' },
-      { name: 'L-Carnitina', src: 'media/l-carnitina.mov', type: 'video', desc: 'Convierte la grasa acumulada en energía utilizable durante el ejercicio. Apoya la definición muscular y mejora el rendimiento en entrenamientos de resistencia.' },
       { name: 'Colágeno',    src: 'media/colageno.mov',    type: 'video', desc: 'Colágeno hidrolizado de alta biodisponibilidad con vitamina C, biotina y ácido hialurónico. Cuida tus articulaciones, piel, cabello y uñas desde adentro hacia afuera.' },
     ]
   },
