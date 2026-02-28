@@ -158,16 +158,19 @@ function initReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.05 });
 
-  document.querySelectorAll('.reveal').forEach((el, _, arr) => {
-    const section = el.closest('section');
-    if (section) {
-      section.querySelectorAll('.reveal').forEach((sib, j) => {
-        sib.style.transitionDelay = (j * 80) + 'ms';
-      });
-    }
-    observer.observe(el);
+  // rAF garantiza que el layout esté calculado antes de observar
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal').forEach((el) => {
+      const section = el.closest('section');
+      if (section) {
+        section.querySelectorAll('.reveal').forEach((sib, j) => {
+          sib.style.transitionDelay = (j * 80) + 'ms';
+        });
+      }
+      observer.observe(el);
+    });
   });
 }
 
