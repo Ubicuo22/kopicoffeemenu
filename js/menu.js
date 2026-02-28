@@ -51,7 +51,7 @@ const MENU = [
       { name: 'Smoothies',              price: '$75' },
       { name: 'Malteadas',              price: '$75' },
       { name: 'Dirty Chai Frío',        price: '$80' },
-      { name: 'Monster',                price: '$45', src: 'media/monster.mov', type: 'video' },
+      { name: 'Monster',                price: '$45', src: 'media/monster.mov', type: 'video', desc: 'La dosis exacta de cafeína, taurina y adrenalina que necesitas para no parar. Siérvelo frío, siéntelo rápido.' },
       { name: 'Agua Chica',             price: '$15' },
       { name: 'Agua Mediana',           price: '$20' },
       { name: 'Agua Grande',            price: '$25' },
