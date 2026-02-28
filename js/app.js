@@ -203,9 +203,34 @@ function initExpandables() {
   });
 }
 
+// ── Nav activo — resalta el link de la sección visible ──
+function initActiveNav() {
+  const navLinks = document.querySelectorAll('#main-nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`#main-nav a[href="#${entry.target.id}"]`);
+        if (active) {
+          active.classList.add('active');
+          active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      }
+    });
+  }, {
+    // Sección activa = la que ocupa la franja central de la pantalla
+    rootMargin: '-40% 0px -50% 0px',
+    threshold: 0
+  });
+
+  document.querySelectorAll('#menu-container section').forEach(s => observer.observe(s));
+}
+
 // ── Punto de entrada ──
 document.addEventListener('DOMContentLoaded', () => {
   initMenu();
   initReveal();
   initExpandables();
+  initActiveNav();
 });
