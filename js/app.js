@@ -37,6 +37,23 @@ function buildItem(data) {
   return item;
 }
 
+// ── Efecto máquina de escribir ──
+function typewrite(p) {
+  const text = p.dataset.text || '';
+  p.textContent = '';
+  p.classList.add('typing');
+  let i = 0;
+  const tick = () => {
+    if (i < text.length) {
+      p.textContent += text[i++];
+      setTimeout(tick, 14);
+    } else {
+      p.classList.remove('typing');
+    }
+  };
+  tick();
+}
+
 // ── Construye el panel de detalle (llamado solo al primer clic) ──
 function buildDetailPanel(item) {
   const src  = item.dataset.src  || PLACEHOLDER;
@@ -52,7 +69,7 @@ function buildDetailPanel(item) {
   panel.innerHTML = `
     <div class="detail-inner">
       <div class="detail-media">${mediaEl}</div>
-      <div class="detail-desc"><p>${desc}</p></div>
+      <div class="detail-desc"><p data-text="${desc}"></p></div>
     </div>`;
 
   return panel;
@@ -170,6 +187,10 @@ function initExpandables() {
           item.appendChild(buildDetailPanel(item));
         }
         item.classList.add('open');
+
+        // Animar descripción como máquina de escribir
+        const p = item.querySelector('.detail-desc p');
+        if (p) typewrite(p);
       }
     });
   });
