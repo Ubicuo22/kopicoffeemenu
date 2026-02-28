@@ -112,15 +112,15 @@ const MENU = [
   {
     id:    'suplementos',
     title: 'Suplementos',
-    sub:   'Por porción / scoop',
+    sub:   'Todos · $25 · por porción / scoop',
     items: [
-      { name: 'Creatina',    price: '$25' },
-      { name: 'Preentreno',  price: '$25' },
-      { name: 'Proteína',    price: '$25', src: 'media/proteina.mov', type: 'video', desc: 'Un scoop es todo lo que necesitas. Impulsa tu recuperación, construye músculo y mantén tu cuerpo en su mejor versión.' },
-      { name: 'BCAAs',       price: '$25' },
-      { name: 'Glutamina',   price: '$25' },
-      { name: 'L-Carnitina', price: '$25' },
-      { name: 'Colágeno',    price: '$25' },
+      { name: 'Creatina',    src: 'media/creatina.mov',    type: 'video', desc: 'Creatina monohidratada de grado farmacéutico. Aumenta la producción de ATP en tus músculos para mayor fuerza, rendimiento y recuperación. El suplemento más respaldado por la ciencia.' },
+      { name: 'Preentreno',  src: 'media/preeworkout.MOV', type: 'video', desc: 'Fórmula explosiva con B-Alanina, Creatina, Arginina y Cafeína. Activa tu circulación, retrasa la fatiga y reduce el dolor muscular hasta un 40% en las 24-48 horas post entrenamiento.' },
+      { name: 'Proteína',    src: 'media/proteina.mov',    type: 'video', desc: 'Whey isolate con 27g de proteína y 5g de BCAAs por porción, sin azúcares. Diseñado para la recuperación muscular rápida y el rendimiento en entrenamientos de alta demanda.' },
+      { name: 'BCAAs',       src: 'media/bcaas.mov',       type: 'video', desc: 'Leucina, isoleucina y valina: los tres aminoácidos esenciales para proteger el músculo, reducir la fatiga y acelerar la recuperación. Con electrolitos para una hidratación óptima.' },
+      { name: 'Glutamina',   src: 'media/glutamina.mov',   type: 'video', desc: 'Aminoácido clave para la recuperación y el sistema inmune. Reduce el catabolismo muscular y prepara tu cuerpo para rendir al máximo en cada sesión.' },
+      { name: 'L-Carnitina', src: 'media/l-carnitina.mov', type: 'video', desc: 'Convierte la grasa acumulada en energía utilizable durante el ejercicio. Apoya la definición muscular y mejora el rendimiento en entrenamientos de resistencia.' },
+      { name: 'Colágeno',    src: 'media/colageno.mov',    type: 'video', desc: 'Colágeno hidrolizado de alta biodisponibilidad con vitamina C, biotina y ácido hialurónico. Cuida tus articulaciones, piel, cabello y uñas desde adentro hacia afuera.' },
     ]
   },
 

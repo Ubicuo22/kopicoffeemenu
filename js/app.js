@@ -23,11 +23,14 @@ function buildItem(data) {
     ? `${data.name} <span class="item-sub">${data.sub}</span>`
     : data.name;
 
+  const priceHtml = data.price
+    ? `<span class="item-dots"></span><span class="item-price">${data.price}</span>`
+    : '';
+
   item.innerHTML = `
     <div class="item-row">
       <span class="item-name">${nameSub}</span>
-      <span class="item-dots"></span>
-      <span class="item-price">${data.price}</span>
+      ${priceHtml}
       <span class="item-toggle">+</span>
     </div>`;
 
