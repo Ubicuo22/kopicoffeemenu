@@ -1,3 +1,6 @@
+# Contexto local del proyecto
+context.js
+
 # Extensiones y herramientas
 .claude/
 .vscode/
