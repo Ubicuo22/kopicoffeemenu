@@ -227,6 +227,10 @@ section {
 .item-row:hover .item-name  { color: var(--white); }
 .item-row:hover .item-price { color: var(--white); }
 
+.item-row.no-detail { cursor: default; }
+.item-row.no-detail:hover .item-name  { color: #ccc; }
+.item-row.no-detail:hover .item-price { color: #888; }
+
 .item-name {
   font-family: 'Barlow', sans-serif;
   font-weight: 800;

@@ -88,7 +88,6 @@ const MENU = [
       { name: 'Chocolatín',         price: '$45' },
       { name: 'Rol con Chispas',    price: '$45' },
       { name: 'Frangipán',          price: '$50' },
-      { name: 'Rebanada de Pastel', price: '$45' },
     ]
   },
 

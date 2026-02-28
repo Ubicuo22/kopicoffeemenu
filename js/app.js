@@ -27,11 +27,15 @@ function buildItem(data) {
     ? `<span class="item-dots"></span><span class="item-price">${data.price}</span>`
     : '';
 
+  // Solo mostrar toggle si el producto tiene media o descripción propia
+  const hasDetail = data.src || data.desc;
+  const toggleHtml = hasDetail ? `<span class="item-toggle">+</span>` : '';
+
   item.innerHTML = `
-    <div class="item-row">
+    <div class="item-row${hasDetail ? '' : ' no-detail'}">
       <span class="item-name">${nameSub}</span>
       ${priceHtml}
-      <span class="item-toggle">+</span>
+      ${toggleHtml}
     </div>`;
 
   return item;
@@ -176,7 +180,7 @@ function initReveal() {
 
 // ── Expandibles — solo uno abierto a la vez ──
 function initExpandables() {
-  document.querySelectorAll('.item-row').forEach(row => {
+  document.querySelectorAll('.item-row:not(.no-detail)').forEach(row => {
     row.addEventListener('click', () => {
       const item   = row.closest('.item');
       const isOpen = item.classList.contains('open');
