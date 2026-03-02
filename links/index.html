@@ -3,130 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>kopi coffee</title>
+  <title>kopi coffee. — links</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,700;0,800;0,900;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
+
+    /* ── Fuentes locales ── */
+    @font-face {
+      font-family: 'Behmer';
+      src: url('../fonts/Behmer.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ── Variables (idénticas al menú) ── */
     :root {
       --black: #0a0a0a;
-      --white: #f5f2ee;
-      --cream: #e8e2d9;
-      --neon: #c8f060;
-      --grey: #2a2a2a;
-      --mid: #555;
+      --white: #f5f5f0;
+      --gray:  #1a1a1a;
+      --mid:   #888;
+      --pink:  #ff3ea5;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--black);
+      background: var(--black);
       color: var(--white);
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Space Mono', monospace;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px;
+      padding: 60px 24px;
       overflow-x: hidden;
     }
 
-    /* Grain overlay */
+    /* ── Vapor background (igual que el menú) ── */
+    .vapor-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+    }
+
+    /* ── Noise overlay ── */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+      opacity: 0.3;
       z-index: 0;
-      opacity: 0.35;
+      pointer-events: none;
     }
 
+    /* ── Contenedor ── */
     .container {
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 400px;
+      max-width: 440px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0;
     }
 
-    /* Logo / Header */
+    /* ── Header / Logo ── */
     .header {
       text-align: center;
-      margin-bottom: 48px;
-      animation: fadeDown 0.8s ease both;
-    }
-
-    .logo-ring {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      border: 1px solid rgba(200,240,96,0.3);
+      margin-bottom: 52px;
+      animation: fadeUp 1s ease both;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      position: relative;
-    }
-
-    .logo-ring::before {
-      content: '';
-      position: absolute;
-      inset: 5px;
-      border-radius: 50%;
-      border: 1px solid rgba(200,240,96,0.15);
     }
 
     .logo-icon {
-      font-size: 32px;
-      line-height: 1;
+      width: 120px;
+      height: auto;
+      margin-bottom: 24px;
+      object-fit: contain;
     }
 
-    .brand-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 42px;
-      font-weight: 300;
-      letter-spacing: 0.15em;
+    .logo-text {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 900;
+      font-size: clamp(72px, 22vw, 120px);
+      letter-spacing: -3px;
+      line-height: 0.88;
+      text-align: center;
       color: var(--white);
-      line-height: 1;
+      text-transform: lowercase;
     }
 
-    .brand-name span {
-      color: var(--neon);
-    }
-
-    .tagline {
-      font-size: 10px;
+    .logo-text span {
+      display: block;
+      font-family: 'Barlow', sans-serif;
       font-weight: 400;
+      font-size: 0.22em;
       letter-spacing: 0.35em;
-      text-transform: uppercase;
       color: var(--mid);
+      text-transform: lowercase;
       margin-top: 8px;
     }
 
-    /* Location badge */
     .location {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 14px;
+      margin-top: 16px;
       font-size: 10px;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: rgba(200,240,96,0.6);
-      border: 1px solid rgba(200,240,96,0.2);
-      padding: 5px 14px;
-      border-radius: 20px;
+      color: #444;
+      animation: fadeUp 1s ease 0.3s both;
     }
 
-    /* Links */
+    /* ── Links ── */
     .links {
       width: 100%;
       display: flex;
@@ -138,98 +133,97 @@
       display: flex;
       align-items: center;
       text-decoration: none;
-      padding: 18px 24px;
-      border: 1px solid rgba(255,255,255,0.08);
+      padding: 20px 24px;
+      border: 1px solid rgba(255,255,255,0.07);
       border-radius: 2px;
       background: rgba(255,255,255,0.02);
       color: var(--white);
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
       position: relative;
       overflow: hidden;
       animation: fadeUp 0.6s ease both;
     }
 
-    .link-item:nth-child(1) { animation-delay: 0.2s; }
-    .link-item:nth-child(2) { animation-delay: 0.35s; }
-    .link-item:nth-child(3) { animation-delay: 0.5s; }
+    .link-item:nth-child(1) { animation-delay: 0.35s; }
+    .link-item:nth-child(2) { animation-delay: 0.5s;  }
+    .link-item:nth-child(3) { animation-delay: 0.65s; }
 
     .link-item::before {
       content: '';
       position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
+      left: 0; top: 0; bottom: 0;
       width: 0;
-      background: var(--neon);
-      transition: width 0.3s ease;
+      background: var(--pink);
+      transition: width 0.25s ease;
     }
 
     .link-item:hover {
-      border-color: rgba(200,240,96,0.3);
-      background: rgba(200,240,96,0.04);
+      border-color: rgba(255,62,165,0.3);
+      background: rgba(255,62,165,0.04);
       transform: translateX(4px);
     }
 
-    .link-item:hover::before {
-      width: 3px;
-    }
+    .link-item:hover::before { width: 3px; }
 
     .link-icon {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: 16px;
+      margin-right: 18px;
       flex-shrink: 0;
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
     }
 
     .link-item:hover .link-icon {
-      background: rgba(200,240,96,0.1);
-      border-color: rgba(200,240,96,0.4);
+      background: rgba(255,62,165,0.1);
+      border-color: rgba(255,62,165,0.4);
     }
 
     .link-icon svg {
       width: 16px;
       height: 16px;
-      fill: var(--white);
-      transition: fill 0.3s ease;
+      fill: var(--mid);
+      transition: fill 0.25s ease;
     }
 
-    .link-item:hover .link-icon svg {
-      fill: var(--neon);
-    }
+    .link-item:hover .link-icon svg { fill: var(--pink); }
 
-    .link-text {
-      flex: 1;
-    }
+    .link-text { flex: 1; }
 
     .link-label {
-      font-size: 11px;
-      letter-spacing: 0.25em;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: var(--mid);
+      color: #444;
       display: block;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
     }
 
     .link-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      font-weight: 300;
-      letter-spacing: 0.05em;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      color: #ccc;
+      text-transform: lowercase;
+      transition: color 0.25s;
     }
+
+    .link-item:hover .link-name { color: var(--white); }
 
     .link-arrow {
       opacity: 0;
-      transform: translateX(-4px);
-      transition: all 0.3s ease;
-      color: var(--neon);
-      font-size: 18px;
+      transform: translateX(-6px);
+      transition: all 0.25s ease;
+      color: var(--pink);
+      font-size: 16px;
+      font-family: 'Space Mono', monospace;
     }
 
     .link-item:hover .link-arrow {
@@ -237,131 +231,147 @@
       transform: translateX(0);
     }
 
-    /* Footer */
+    /* ── Footer ── */
     .footer {
-      margin-top: 48px;
+      margin-top: 52px;
       text-align: center;
-      animation: fadeUp 0.6s ease 0.65s both;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      animation: fadeUp 0.6s ease 0.8s both;
     }
 
-    .footer-divider {
+    .footer-line {
       width: 40px;
       height: 1px;
-      background: linear-gradient(to right, transparent, rgba(200,240,96,0.4), transparent);
-      margin: 0 auto 16px;
+      background: linear-gradient(to right, transparent, #2a2a2a, transparent);
     }
 
     .footer-text {
       font-size: 9px;
       letter-spacing: 0.3em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.2);
+      color: #2a2a2a;
     }
 
-    /* Animations */
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .footer-ubicuo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s;
     }
 
+    .footer-ubicuo:hover { opacity: 0.7; }
+    .footer-ubicuo img   { width: 20px; height: auto; }
+
+    .footer-ubicuo span {
+      font-family: 'Behmer', sans-serif;
+      font-size: 13px;
+      color: #2a2a2a;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Animaciones ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Neon glow dot */
-    .glow-dot {
-      position: fixed;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(200,240,96,0.06) 0%, transparent 70%);
-      top: -100px;
-      right: -100px;
-      pointer-events: none;
-      z-index: 0;
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      body { padding: 48px 20px; }
+      .logo-text { font-size: clamp(60px, 24vw, 90px); }
     }
 
-    .glow-dot-2 {
-      position: fixed;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(200,240,96,0.04) 0%, transparent 70%);
-      bottom: 0;
-      left: -50px;
-      pointer-events: none;
-      z-index: 0;
-    }
   </style>
 </head>
 <body>
-  <div class="glow-dot"></div>
-  <div class="glow-dot-2"></div>
 
-  <div class="container">
-    <div class="header">
-      <div class="logo-ring">
-        <span class="logo-icon">☕</span>
-      </div>
-      <h1 class="brand-name">kopi<span>.</span></h1>
-      <p class="tagline">specialty coffee kiosk</p>
-      <div class="location">
-        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        Plaza Andador · Morelia
-      </div>
+<!-- ════ FONDO FIJO — ondas de vapor (igual que el menú) ════ -->
+<svg class="vapor-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <defs><filter id="blur1"><feGaussianBlur stdDeviation="2"/></filter></defs>
+  <g filter="url(#blur1)" stroke="white" fill="none">
+    <path stroke-width="6" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" opacity="0.6"/>
+    <path stroke-width="4" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,120)" opacity="0.4"/>
+    <path stroke-width="3" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,240)" opacity="0.3"/>
+    <path stroke-width="2" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,360)" opacity="0.2"/>
+    <path stroke-width="6" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,480)" opacity="0.15"/>
+    <path stroke-width="4" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,600)" opacity="0.1"/>
+  </g>
+</svg>
+
+<div class="container">
+
+  <!-- ════ HEADER ════ -->
+  <div class="header">
+    <img class="logo-icon" src="../imagotipokopi.png" alt="kopi coffee.">
+    <div class="logo-text">
+      kopi
+      <span>coffee.</span>
     </div>
-
-    <div class="links">
-
-      <!-- Instagram -->
-      <a class="link-item" href="https://www.instagram.com/kopi_coffee_andador?igsh=MWJpYzVhZDh3eDNsOA%3D%3D" target="_blank" rel="noopener">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-        </div>
-        <div class="link-text">
-          <span class="link-label">síguenos</span>
-          <span class="link-name">Instagram</span>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-
-      <!-- Menú -->
-      <a class="link-item" href="http://kopimenu.ubicuo.icu/" target="_blank" rel="noopener">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.65l4.19 4.19zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/>
-          </svg>
-        </div>
-        <div class="link-text">
-          <span class="link-label">explora</span>
-          <span class="link-name">Nuestro menú</span>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-
-      <!-- WhatsApp -->
-      <a class="link-item" href="https://wa.me/524436977915" target="_blank" rel="noopener">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-        </div>
-        <div class="link-text">
-          <span class="link-label">contáctanos</span>
-          <span class="link-name">WhatsApp</span>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-
-    </div>
-
-    <div class="footer">
-      <div class="footer-divider"></div>
-      <p class="footer-text">kopi coffee · Plaza Andador · Morelia</p>
-    </div>
+    <p class="location">Plaza Andador · Morelia · Michoacán</p>
   </div>
+
+  <!-- ════ LINKS ════ -->
+  <div class="links">
+
+    <!-- Instagram -->
+    <a class="link-item" href="https://www.instagram.com/kopi_coffee_andador?igsh=MWJpYzVhZDh3eDNsOA%3D%3D" target="_blank" rel="noopener">
+      <div class="link-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </div>
+      <div class="link-text">
+        <span class="link-label">síguenos</span>
+        <span class="link-name">Instagram</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <!-- Menú -->
+    <a class="link-item" href="https://kopimenu.ubicuo.icu/" target="_blank" rel="noopener">
+      <div class="link-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.65l4.19 4.19zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/>
+        </svg>
+      </div>
+      <div class="link-text">
+        <span class="link-label">explora</span>
+        <span class="link-name">nuestro menú</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+    <!-- WhatsApp -->
+    <a class="link-item" href="https://wa.me/524436977915" target="_blank" rel="noopener">
+      <div class="link-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+      </div>
+      <div class="link-text">
+        <span class="link-label">contáctanos</span>
+        <span class="link-name">WhatsApp</span>
+      </div>
+      <span class="link-arrow">→</span>
+    </a>
+
+  </div>
+
+  <!-- ════ FOOTER ════ -->
+  <div class="footer">
+    <div class="footer-line"></div>
+    <p class="footer-text">kopi coffee · Plaza Andador · Morelia</p>
+    <a href="https://www.ubicuomexico.com/" target="_blank" rel="noopener" class="footer-ubicuo">
+      <img src="../ubicuo-logo.svg" alt="Ubicuo Studio">
+      <span>Ubicuo Studio · 2026</span>
+    </a>
+  </div>
+
+</div>
 </body>
 </html>
