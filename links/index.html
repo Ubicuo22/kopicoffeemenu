@@ -20,11 +20,13 @@
 
     /* ── Variables (idénticas al menú) ── */
     :root {
-      --black: #0a0a0a;
-      --white: #f5f5f0;
-      --gray:  #1a1a1a;
-      --mid:   #888;
-      --pink:  #ff3ea5;
+      --black:  #0a0a0a;
+      --white:  #f5f5f0;
+      --gray:   #1a1a1a;
+      --mid:    #888;
+      --pink:   #ff3ea5;  /* Instagram */
+      --amber:  #f5a300;  /* Menú      */
+      --green:  #25d366;  /* WhatsApp  */
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -153,17 +155,32 @@
       position: absolute;
       left: 0; top: 0; bottom: 0;
       width: 0;
-      background: var(--pink);
       transition: width 0.25s ease;
     }
 
-    .link-item:hover {
-      border-color: rgba(255,62,165,0.3);
-      background: rgba(255,62,165,0.04);
-      transform: translateX(4px);
-    }
-
+    .link-item:hover { transform: translateX(4px); }
     .link-item:hover::before { width: 3px; }
+
+    /* ── Instagram — rosa ── */
+    .link-item:nth-child(1)::before        { background: var(--pink); }
+    .link-item:nth-child(1):hover          { border-color: rgba(255,62,165,0.3); background: rgba(255,62,165,0.04); }
+    .link-item:nth-child(1):hover .link-icon { background: rgba(255,62,165,0.12); border-color: rgba(255,62,165,0.4); }
+    .link-item:nth-child(1):hover .link-icon svg { fill: var(--pink); }
+    .link-item:nth-child(1):hover .link-arrow { color: var(--pink); }
+
+    /* ── Menú — ámbar ── */
+    .link-item:nth-child(2)::before        { background: var(--amber); }
+    .link-item:nth-child(2):hover          { border-color: rgba(245,163,0,0.3); background: rgba(245,163,0,0.04); }
+    .link-item:nth-child(2):hover .link-icon { background: rgba(245,163,0,0.12); border-color: rgba(245,163,0,0.4); }
+    .link-item:nth-child(2):hover .link-icon svg { fill: var(--amber); }
+    .link-item:nth-child(2):hover .link-arrow { color: var(--amber); }
+
+    /* ── WhatsApp — verde ── */
+    .link-item:nth-child(3)::before        { background: var(--green); }
+    .link-item:nth-child(3):hover          { border-color: rgba(37,211,102,0.3); background: rgba(37,211,102,0.04); }
+    .link-item:nth-child(3):hover .link-icon { background: rgba(37,211,102,0.12); border-color: rgba(37,211,102,0.4); }
+    .link-item:nth-child(3):hover .link-icon svg { fill: var(--green); }
+    .link-item:nth-child(3):hover .link-arrow { color: var(--green); }
 
     .link-icon {
       width: 38px;
@@ -179,19 +196,12 @@
       transition: all 0.25s ease;
     }
 
-    .link-item:hover .link-icon {
-      background: rgba(255,62,165,0.1);
-      border-color: rgba(255,62,165,0.4);
-    }
-
     .link-icon svg {
       width: 16px;
       height: 16px;
       fill: var(--mid);
       transition: fill 0.25s ease;
     }
-
-    .link-item:hover .link-icon svg { fill: var(--pink); }
 
     .link-text { flex: 1; }
 
@@ -221,7 +231,6 @@
       opacity: 0;
       transform: translateX(-6px);
       transition: all 0.25s ease;
-      color: var(--pink);
       font-size: 16px;
       font-family: 'Space Mono', monospace;
     }
