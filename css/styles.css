@@ -378,7 +378,7 @@ footer .f-logo {
   font-weight: 900;
   font-size: 26px;
   letter-spacing: -0.5px;
-  color: #222;
+  color: #444;
   text-transform: lowercase;
 }
 
@@ -386,7 +386,7 @@ footer p {
   font-size: 10px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #2a2a2a;
+  color: #444;
 }
 
 .footer-ig {
