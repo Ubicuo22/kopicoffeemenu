@@ -56,6 +56,11 @@ header {
   padding: 60px 40px;
   border-bottom: 1px solid #222;
   overflow: hidden;
+  background-image:
+    linear-gradient(rgba(10,10,10,0.84), rgba(10,10,10,0.84)),
+    url('../web.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .header-noise {
@@ -461,6 +466,11 @@ footer p {
   .item-grid { grid-template-columns: 1fr; }
   section    { padding: 60px 24px; }
   nav a      { padding: 16px 16px; }
+  header     {
+    background-image:
+      linear-gradient(rgba(10,10,10,0.84), rgba(10,10,10,0.84)),
+      url('../movil.jpg');
+  }
 }
 
 @media (max-width: 480px) {
