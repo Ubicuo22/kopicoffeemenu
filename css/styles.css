@@ -119,18 +119,6 @@ header {
   animation: fadeUp 1s ease 0.5s both;
 }
 
-.scroll-hint {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: #333;
-  animation: pulse 2s infinite;
-  z-index: 2;
-}
 
 /* ════════════════════════════════
    NAV — sticky con scroll horizontal
