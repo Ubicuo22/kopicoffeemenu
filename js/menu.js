@@ -85,7 +85,7 @@ const MENU = [
     title: 'Panadería',
     items: [
       { name: 'Concha',             price: '$30' },
-      { name: 'Muffin',             price: '$35' },
+      { name: 'Brownie',            price: '$45' },
       { name: 'Croissant',          price: '$45' },
       { name: 'Chocolatín',         price: '$45' },
       { name: 'Rol con Chispas',    price: '$45' },
