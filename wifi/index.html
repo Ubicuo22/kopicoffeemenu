@@ -499,6 +499,10 @@
           </svg>
           abrir instagram
         </a>
+        <div id="countdown-wrap" style="display:none; text-align:center; animation: fadeUp 0.4s ease both;">
+          <p class="state-label" style="margin-bottom:8px;">espera mientras sigues la cuenta</p>
+          <span id="countdown-num" style="font-family:'Barlow',sans-serif; font-weight:900; font-size:48px; color: var(--pink); line-height:1;">10</span>
+        </div>
         <button class="btn btn-secondary" id="btn-followed">
           wifi disponible →
         </button>
@@ -630,9 +634,27 @@
     // Estado inicial
     showState(estaAbierto() ? 'follow' : 'closed');
 
-    // Revelar "ya te seguí" solo después de tocar Instagram
+    // Countdown 10s después de tocar Instagram
     document.getElementById('btn-instagram').addEventListener('click', () => {
-      document.getElementById('btn-followed').classList.add('visible');
+      const wrap = document.getElementById('countdown-wrap');
+      const num  = document.getElementById('countdown-num');
+      const btn  = document.getElementById('btn-followed');
+
+      if (wrap.style.display !== 'none') return; // ya iniciado
+      wrap.style.display = 'block';
+
+      let secs = 10;
+      num.textContent = secs;
+
+      const tick = setInterval(() => {
+        secs--;
+        num.textContent = secs;
+        if (secs <= 0) {
+          clearInterval(tick);
+          wrap.style.display = 'none';
+          btn.classList.add('visible');
+        }
+      }, 1000);
     });
 
     // Botón "ya te seguí"
