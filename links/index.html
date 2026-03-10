@@ -99,10 +99,16 @@
       align-items: center;
     }
 
+    .logo-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+    }
+
     .logo-icon {
-      width: 120px;
+      width: clamp(70px, 18vw, 100px);
       height: auto;
-      margin-bottom: 24px;
       object-fit: contain;
     }
 
@@ -110,23 +116,20 @@
       font-family: 'Barlow', sans-serif;
       font-weight: 900;
       font-size: clamp(72px, 22vw, 120px);
-      letter-spacing: -6px;
-      margin-left: -6px; /* compensa el trailing space del letter-spacing */
-      line-height: 0.88;
-      text-align: center;
+      line-height: 1;
+      text-align: left;
       color: var(--white);
       text-transform: lowercase;
     }
 
-    .logo-text span {
+    .logo-text .logo-kopi {
       display: block;
-      font-family: 'Barlow', sans-serif;
-      font-weight: 400;
-      font-size: 0.22em;
-      letter-spacing: 0.35em;
-      color: var(--mid);
-      text-transform: lowercase;
-      margin-top: 18px;
+      font-size: 1em;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 1);
+      -webkit-text-stroke: 42px #000;
+      paint-order: stroke fill;
     }
 
     .location {
@@ -134,7 +137,7 @@
       font-size: 10px;
       letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: var(--white);
+      color: rgba(245, 245, 240, 0.7);
       animation: fadeUp 1s ease 0.3s both;
     }
 
@@ -331,12 +334,13 @@
 
   <!-- ════ HEADER ════ -->
   <div class="header">
-    <img class="logo-icon" src="../imagotipokopicoffee.png" alt="kopi coffee.">
-    <div class="logo-text">
-      kopi
-      <span>coffee.</span>
+    <div class="logo-row">
+      <img class="logo-icon" src="../Vector.png" alt="kopi coffee.">
+      <div class="logo-text">
+        <span class="logo-kopi">kopi</span>
+      </div>
     </div>
-    <p class="location">Plaza Andador · Morelia · Michoacán</p>
+    <p class="location">Plaza Andador</p>
   </div>
 
   <!-- ════ LINKS ════ -->
