@@ -99,6 +99,16 @@ header {
   text-transform: lowercase;
 }
 
+.logo-text .logo-kopi {
+  display: block;
+  font-size: 1em;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.7);
+  -webkit-text-stroke: 42px #000;
+  paint-order: stroke fill;
+}
+
 .logo-text span {
   display: block;
   font-family: 'Barlow', sans-serif;
@@ -108,6 +118,8 @@ header {
   color: var(--mid);
   text-transform: lowercase;
   margin-top: 18px;
+  text-align: left;
+  padding-left: 0.15em;
 }
 
 .location {
@@ -115,7 +127,7 @@ header {
   font-size: 10px;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: var(--white);
+  color: rgba(245, 245, 240, 0.7);
   animation: fadeUp 1s ease 0.5s both;
 }
 
