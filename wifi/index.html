@@ -344,6 +344,14 @@
     }
 
     /* ── Divider de botones ── */
+    #btn-followed {
+      display: none;
+    }
+    #btn-followed.visible {
+      display: flex;
+      animation: fadeUp 0.4s ease both;
+    }
+
     .btn-divider {
       width: 100%;
       display: flex;
@@ -492,7 +500,7 @@
           abrir instagram
         </a>
         <button class="btn btn-secondary" id="btn-followed">
-          ya te seguí →
+          wifi disponible →
         </button>
       </div>
     </div>
@@ -621,6 +629,11 @@
 
     // Estado inicial
     showState(estaAbierto() ? 'follow' : 'closed');
+
+    // Revelar "ya te seguí" solo después de tocar Instagram
+    document.getElementById('btn-instagram').addEventListener('click', () => {
+      document.getElementById('btn-followed').classList.add('visible');
+    });
 
     // Botón "ya te seguí"
     document.getElementById('btn-followed').addEventListener('click', () => {
