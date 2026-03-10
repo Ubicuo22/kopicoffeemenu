@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>kopi coffee. — wifi</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="../imagotipokopicoffee.png" type="image/png">
+  <link rel="apple-touch-icon" href="../imagotipokopicoffee.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://kopimenu.ubicuo.icu/wifi">
+  <meta property="og:title"       content="kopi coffee. — wifi">
+  <meta property="og:description" content="Conéctate al WiFi de Kopi Coffee · Plaza Andador · Morelia">
+  <meta property="og:image"       content="https://kopimenu.ubicuo.icu/web.jpg">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="description"        content="Conéctate al WiFi de Kopi Coffee · Plaza Andador · Morelia">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,700;0,800;0,900;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+
+    /* ── Fuentes locales ── */
+    @font-face {
+      font-family: 'Behmer';
+      src: url('../fonts/Behmer.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ── Variables (idénticas al menú) ── */
+    :root {
+      --black:  #0a0a0a;
+      --white:  #f5f5f0;
+      --gray:   #1a1a1a;
+      --mid:    #888;
+      --pink:   #ff3ea5;
+      --amber:  #f5a300;
+      --green:  #25d366;
+      --wifi:   #4fc3f7;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Space Mono', monospace;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      overflow-x: hidden;
+    }
+
+    /* ── Vapor background ── */
+    .vapor-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+    }
+
+    /* ── Noise overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+      opacity: 0.3;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── Contenedor ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── Header / Logo ── */
+    .header {
+      text-align: center;
+      margin-bottom: 52px;
+      animation: fadeUp 1s ease both;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-icon {
+      width: clamp(70px, 18vw, 100px);
+      height: auto;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 900;
+      font-size: clamp(72px, 22vw, 120px);
+      line-height: 1;
+      text-align: left;
+      color: var(--white);
+      text-transform: lowercase;
+    }
+
+    .logo-text .logo-kopi {
+      display: block;
+      font-size: 1em;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 1);
+      -webkit-text-stroke: 42px #000;
+      paint-order: stroke fill;
+    }
+
+    .location {
+      margin-top: 16px;
+      font-size: 10px;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: rgba(245, 245, 240, 0.7);
+      animation: fadeUp 1s ease 0.3s both;
+    }
+
+    /* ── Card principal ── */
+    .card {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 2px;
+      background: rgba(255,255,255,0.02);
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 24px;
+      animation: fadeUp 0.6s ease 0.35s both;
+    }
+
+    /* ── Ícono central ── */
+    .state-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .state-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--mid);
+    }
+
+    .state-icon.closed   { border-color: rgba(136,136,136,0.3); }
+    .state-icon.closed svg { fill: var(--mid); }
+
+    .state-icon.follow   { border-color: rgba(255,62,165,0.3); background: rgba(255,62,165,0.06); }
+    .state-icon.follow svg { fill: var(--pink); }
+
+    .state-icon.wifi-on  { border-color: rgba(79,195,247,0.3); background: rgba(79,195,247,0.06); }
+    .state-icon.wifi-on svg { fill: var(--wifi); }
+
+    /* ── Textos ── */
+    .state-label {
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 4px;
+    }
+
+    .state-title {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 800;
+      font-size: clamp(22px, 6vw, 28px);
+      color: var(--white);
+      text-transform: lowercase;
+      line-height: 1.2;
+    }
+
+    .state-subtitle {
+      font-size: 13px;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    /* ── Horario (estado cerrado) ── */
+    .schedule-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 2px;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+      color: #555;
+    }
+
+    .schedule-badge span {
+      color: var(--white);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    /* ── Botones ── */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 18px 24px;
+      border-radius: 2px;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      text-transform: lowercase;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--pink);
+      color: #fff;
+    }
+    .btn-primary:hover { background: #ff1a95; transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-secondary {
+      background: transparent;
+      color: #666;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .btn-secondary:hover { color: var(--white); border-color: rgba(255,255,255,0.2); transform: translateX(3px); }
+
+    .btn-icon {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* ── Credenciales WiFi ── */
+    .cred-block {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .cred-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 16px 20px;
+      border: 1px solid rgba(79,195,247,0.12);
+      border-radius: 2px;
+      background: rgba(79,195,247,0.04);
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .cred-item:hover { background: rgba(79,195,247,0.08); }
+
+    .cred-item-label {
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: rgba(79,195,247,0.5);
+    }
+
+    .cred-item-value {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 800;
+      font-size: clamp(18px, 5vw, 24px);
+      color: var(--white);
+      letter-spacing: 0.04em;
+      word-break: break-all;
+    }
+
+    .cred-hint {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #333;
+      margin-top: 2px;
+    }
+
+    /* ── Toast de copiado ── */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(79,195,247,0.15);
+      border: 1px solid rgba(79,195,247,0.3);
+      color: var(--wifi);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 2px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+      z-index: 100;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ── Divider de botones ── */
+    .btn-divider {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 52px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      animation: fadeUp 0.6s ease 0.6s both;
+    }
+
+    .footer-line {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #2a2a2a, transparent);
+    }
+
+    .footer-text {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #2a2a2a;
+    }
+
+    .footer-ubicuo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .footer-ubicuo:hover { opacity: 0.7; }
+    .footer-ubicuo img   { width: 24px; height: auto; }
+
+    .footer-ubicuo span {
+      font-family: 'Behmer', sans-serif;
+      font-size: 13px;
+      color: #444;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Animaciones ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes revealIn {
+      from { opacity: 0; transform: scale(0.96) translateY(8px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .state-revealed {
+      animation: revealIn 0.5s ease both;
+    }
+
+    /* ── Hidden ── */
+    [data-state] { display: none; }
+    [data-state].active { display: contents; }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      body { padding: 48px 20px; }
+      .logo-text { font-size: clamp(60px, 24vw, 90px); }
+      .card { padding: 32px 20px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ════ FONDO FIJO — ondas de vapor ════ -->
+<svg class="vapor-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <defs><filter id="blur1"><feGaussianBlur stdDeviation="2"/></filter></defs>
+  <g filter="url(#blur1)" stroke="white" fill="none">
+    <path stroke-width="6" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" opacity="0.6"/>
+    <path stroke-width="4" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,120)" opacity="0.4"/>
+    <path stroke-width="3" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,240)" opacity="0.3"/>
+    <path stroke-width="2" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,360)" opacity="0.2"/>
+    <path stroke-width="6" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,480)" opacity="0.15"/>
+    <path stroke-width="4" d="M-100,200 C100,160 200,240 400,200 C600,160 700,240 900,200 C1100,160 1200,240 1400,200 C1600,160 1700,240 1900,200" transform="translate(0,600)" opacity="0.1"/>
+  </g>
+</svg>
+
+<div class="container">
+
+  <!-- ════ HEADER ════ -->
+  <div class="header">
+    <div class="logo-row">
+      <img class="logo-icon" src="../Vector.png" alt="kopi coffee.">
+      <div class="logo-text">
+        <span class="logo-kopi">kopi</span>
+      </div>
+    </div>
+    <p class="location">Plaza Andador</p>
+  </div>
+
+  <!-- ════ CARD ════ -->
+  <div class="card" id="main-card">
+
+    <!-- Estado 1: Cerrado -->
+    <div data-state="closed">
+      <div class="state-icon closed">
+        <!-- Ícono luna -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="state-label">wifi</p>
+        <p class="state-title">estamos cerrados</p>
+      </div>
+      <p class="state-subtitle">Vuelve cuando abramos</p>
+      <div class="schedule-badge">
+        <span id="open-hours">08:00 – 21:00</span>
+      </div>
+    </div>
+
+    <!-- Estado 2: Follow -->
+    <div data-state="follow">
+      <div class="state-icon follow">
+        <!-- Ícono Instagram -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+      </div>
+      <div>
+        <p class="state-label">paso 1 de 2</p>
+        <p class="state-title">síguenos en instagram</p>
+      </div>
+      <p class="state-subtitle">Síguenos para poder conectarte al WiFi de Kopi Coffee</p>
+      <div class="btn-divider">
+        <a class="btn btn-primary" href="https://www.instagram.com/kopi_coffee_andador" target="_blank" rel="noopener" id="btn-instagram">
+          <svg class="btn-icon" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          abrir instagram
+        </a>
+        <button class="btn btn-secondary" id="btn-followed">
+          ya te seguí →
+        </button>
+      </div>
+    </div>
+
+    <!-- Estado 3: Contraseña -->
+    <div data-state="password">
+      <div class="state-icon wifi-on state-revealed">
+        <!-- Ícono WiFi -->
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>
+        </svg>
+      </div>
+      <div class="state-revealed">
+        <p class="state-label">¡listo!</p>
+        <p class="state-title">ya puedes conectarte</p>
+      </div>
+      <div class="cred-block state-revealed">
+        <div class="cred-item" id="copy-ssid" title="Toca para copiar">
+          <span class="cred-item-label">red</span>
+          <span class="cred-item-value" id="ssid-value">INFINITUMC355</span>
+          <span class="cred-hint">toca para copiar</span>
+        </div>
+        <div class="cred-item" id="copy-pass" title="Toca para copiar">
+          <span class="cred-item-label">contraseña</span>
+          <span class="cred-item-value" id="pass-value">3f2UZceuPt</span>
+          <span class="cred-hint">toca para copiar</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /card -->
+
+  <!-- ════ FOOTER ════ -->
+  <div class="footer">
+    <div class="footer-line"></div>
+    <p class="footer-text">kopi coffee · Plaza Andador · Morelia</p>
+    <a href="https://www.ubicuomexico.com/" target="_blank" rel="noopener" class="footer-ubicuo">
+      <img src="../ubicuo-logo.svg" alt="Ubicuo Studio">
+      <span>Ubicuo Studio · 2026</span>
+    </a>
+  </div>
+
+</div><!-- /container -->
+
+<!-- ════ TOAST ════ -->
+<div class="toast" id="toast">copiado</div>
+
+<script>
+  const CONFIG = {
+    horario: {
+      apertura: { hora: 8, minutos: 0 },
+      cierre:   { hora: 21, minutos: 0 },
+    },
+    wifi: {
+      red: "INFINITUMC355",
+      password: "3f2UZceuPt",
+    },
+    instagram: "https://www.instagram.com/kopi_coffee_andador",
+    timezone: "America/Mexico_City",
+  };
+
+  // ── Hora actual en México ──────────────────────────────────────
+  function getMexicoTime() {
+    const now = new Date();
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: CONFIG.timezone,
+      hour:   'numeric',
+      minute: 'numeric',
+      hour12: false,
+    }).formatToParts(now);
+
+    const h = parseInt(parts.find(p => p.type === 'hour').value, 10);
+    const m = parseInt(parts.find(p => p.type === 'minute').value, 10);
+    return { hora: h, minutos: m };
+  }
+
+  function estaAbierto() {
+    const { hora, minutos } = getMexicoTime();
+    const totalMinutos = hora * 60 + minutos;
+    const aperturaMin = CONFIG.horario.apertura.hora * 60 + CONFIG.horario.apertura.minutos;
+    const cierreMin   = CONFIG.horario.cierre.hora   * 60 + CONFIG.horario.cierre.minutos;
+    return totalMinutos >= aperturaMin && totalMinutos < cierreMin;
+  }
+
+  // ── Utilidad: mostrar estado ───────────────────────────────────
+  function showState(name) {
+    document.querySelectorAll('[data-state]').forEach(el => {
+      el.classList.toggle('active', el.dataset.state === name);
+    });
+  }
+
+  // ── Toast ──────────────────────────────────────────────────────
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+  }
+
+  // ── Copiar al portapapeles ─────────────────────────────────────
+  function copyText(text, label) {
+    navigator.clipboard.writeText(text)
+      .then(() => showToast(label + ' copiado'))
+      .catch(() => {
+        // Fallback para navegadores sin clipboard API
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast(label + ' copiado');
+      });
+  }
+
+  // ── Inicializar ────────────────────────────────────────────────
+  function init() {
+    // Formato horario en badge
+    const pad = n => String(n).padStart(2, '0');
+    const ap = CONFIG.horario.apertura;
+    const ci = CONFIG.horario.cierre;
+    document.getElementById('open-hours').textContent =
+      `${pad(ap.hora)}:${pad(ap.minutos)} – ${pad(ci.hora)}:${pad(ci.minutos)}`;
+
+    // Estado inicial
+    showState(estaAbierto() ? 'follow' : 'closed');
+
+    // Botón "ya te seguí"
+    document.getElementById('btn-followed').addEventListener('click', () => {
+      showState('password');
+    });
+
+    // Copiar SSID
+    document.getElementById('copy-ssid').addEventListener('click', () => {
+      copyText(CONFIG.wifi.red, 'red');
+    });
+
+    // Copiar contraseña
+    document.getElementById('copy-pass').addEventListener('click', () => {
+      copyText(CONFIG.wifi.password, 'contraseña');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>
