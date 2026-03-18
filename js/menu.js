@@ -46,18 +46,20 @@ const MENU = [
       { name: 'Latte Frío',             price: '$75' },
       { name: 'Matcha Frío',            price: '$75' },
       { name: 'Chai Frío',              price: '$75' },
-      { name: 'Taro Frío',              price: '$75' },
+      { name: 'Taro Frío',              price: '$75', srcs: ['media/taro-frio1.jpg','media/taro-frio2.jpg'], desc: 'Cremoso, suave y con ese lila que entra por los ojos. Bebida fría preparada con polvo de taro de sabor dulce y delicado, mezclada con la leche que más te guste — entera, deslactosada, de almendra o de coco. Frío, refrescante y difícil de tomar solo una vez.' },
       { name: 'Caramel Macchiato Frío', price: '$75' },
       { name: 'Chocolate Blanco',       price: '$75' },
       { name: 'Leche Dorada Fría',      price: '$75' },
       { name: 'Smoothies',              price: '$75' },
       { name: 'Malteadas',              price: '$75' },
       { name: 'Dirty Chai Frío',        price: '$80' },
+      { name: 'Espresso Tonic',         price: '$75', srcs: ['media/espresso-tonic1.jpg','media/espresso-tonic2.jpg','media/espresso-tonic3.jpg'], desc: 'Burbujeante, fresco, con carácter. Espresso recién extraído sobre hielo, vertido sobre agua tónica que despierta cada nota del café. El toque cítrico al final lo hace ligero e irresistible — energía y frescura en el mismo vaso.' },
       { name: 'Monster',                price: '$45', src: 'media/monster.mp4', type: 'video', desc: 'La dosis exacta de cafeína, taurina y adrenalina que necesitas para no parar. Siérvelo frío, siéntelo rápido.' },
       { name: 'Agua Chica',             price: '$15' },
       { name: 'Agua Mediana',           price: '$20' },
       { name: 'Agua Grande',            price: '$25' },
       { name: 'Tisana Fría',            price: '$60' },
+      { name: 'Pink Lemonade',          price: '$60', srcs: ['media/pink-lemonade1.jpg','media/pink-lemonade2.jpg'], desc: 'Vibrante, refrescante, imposible de ignorar. Limonada preparada con limón fresco y ese toque frutal que le regala su rosa inconfundible. Ligera, hidratante y servida bien fría — el alivio perfecto en cualquier momento.' },
       { name: 'Refrescos',              price: '$25' },
     ]
   },
@@ -89,7 +91,8 @@ const MENU = [
       { name: 'Croissant',          price: '$45' },
       { name: 'Chocolatín',         price: '$45' },
       { name: 'Rol con Chispas',    price: '$45' },
-      { name: 'Frangipán',          price: '$50' },
+      { name: 'Rol de Canela',      price: '$45', srcs: ['media/rol-canela1.jpg','media/rol-canela2.jpg'], desc: 'Esponjoso, aromático y difícil de resistir. Masa suave enrollada con canela en cada capa, horneada hasta alcanzar ese dorado perfecto. El glasseado que lo baña al final lo convierte en el acompañante ideal para tu café.' },
+      { name: 'Frangipán',          price: '$50', srcs: ['media/frangipane1.jpg','media/frangipane2.jpg'], desc: 'Hojaldrado por fuera, cremoso en el corazón. Croissant relleno de crema pastelera de almendra, coronado con almendra fileteada tostada. El azúcar glass lo termina con la delicadeza exacta.' },
     ]
   },
 
@@ -106,6 +109,7 @@ const MENU = [
     title: 'Wraps &\nEnsaladas',
     items: [
       { name: 'Wrap',     sub: 'Pollo chipotle · Pollo finas hierbas · Pavo · Atún', price: '$95', srcs: ['media/wrap1.jpg','media/wrap2.jpg','media/wrap3.jpg'], desc: 'Crujiente en cada vuelta, fresco en cada capa. Tortilla de harina, chipotle o nopal cargada con lechuga, zanahoria rallada, morrón de colores, jitomate y queso manchego. Elige tu aderezo —César, ranch, mil islas o chipotle— y los chips al lado hacen el cierre perfecto.' },
+      { name: 'Chapata de Pollo', sub: 'Finas hierbas · Chipotle',                    price: '$95', srcs: ['media/chapata-pollo1.jpg','media/chapata-pollo2.jpg'], desc: 'Crujiente en la corteza, jugoso en cada capa. Chapata rellena de pollo finas hierbas o chipotle, con lechuga, zanahoria rallada, pepino, cebolla y pimiento de colores. Elige tu aderezo y ciérralo con un puñado de chips — el remate que no falla.' },
       { name: 'Ensalada', sub: 'Pollo · Atún',                                       price: '$95' },
     ]
   },
