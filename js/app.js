@@ -18,6 +18,7 @@ function buildItem(data) {
   if (data.src)  item.dataset.src  = data.src;
   if (data.type) item.dataset.type = data.type;
   if (data.desc) item.dataset.desc = data.desc;
+  if (data.srcs) item.dataset.srcs = JSON.stringify(data.srcs);
 
   const nameSub = data.sub
     ? `${data.name} <span class="item-sub">${data.sub}</span>`
@@ -28,7 +29,7 @@ function buildItem(data) {
     : '';
 
   // Solo mostrar toggle si el producto tiene media o descripción propia
-  const hasDetail = data.src || data.desc;
+  const hasDetail = data.src || data.desc || data.srcs;
   const toggleHtml = hasDetail ? `<span class="item-toggle">+</span>` : '';
 
   item.innerHTML = `
@@ -60,13 +61,22 @@ function typewrite(p) {
 
 // ── Construye el panel de detalle (llamado solo al primer clic) ──
 function buildDetailPanel(item) {
-  const src  = item.dataset.src  || PLACEHOLDER;
-  const type = item.dataset.type || 'image';
   const desc = item.dataset.desc || DESC_DEFAULT;
 
-  const mediaEl = type === 'video'
-    ? `<video src="${src}" autoplay muted loop playsinline preload="none"></video>`
-    : `<img src="${src}" alt="" loading="lazy">`;
+  let mediaEl;
+  if (item.dataset.srcs) {
+    const srcs = JSON.parse(item.dataset.srcs);
+    const slides = srcs.map((s, i) =>
+      `<img src="${s}" alt="" loading="lazy" class="carousel-slide${i === 0 ? ' active' : ''}">`
+    ).join('');
+    mediaEl = `<div class="detail-carousel">${slides}</div>`;
+  } else {
+    const src  = item.dataset.src  || PLACEHOLDER;
+    const type = item.dataset.type || 'image';
+    mediaEl = type === 'video'
+      ? `<video src="${src}" autoplay muted loop playsinline preload="none"></video>`
+      : `<img src="${src}" alt="" loading="lazy">`;
+  }
 
   const panel = document.createElement('div');
   panel.className = 'item-detail';
@@ -75,6 +85,18 @@ function buildDetailPanel(item) {
       <div class="detail-media">${mediaEl}</div>
       <div class="detail-desc"><p data-text="${desc}"></p></div>
     </div>`;
+
+  // Iniciar rotación del carousel
+  const carousel = panel.querySelector('.detail-carousel');
+  if (carousel) {
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 2800);
+  }
 
   return panel;
 }

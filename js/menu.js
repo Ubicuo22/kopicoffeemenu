@@ -29,7 +29,7 @@ const MENU = [
       { name: 'Matcha',                               price: '$65 / $70'  },
       { name: 'Chai',                                 price: '$65 / $70'  },
       { name: 'Taro',                                 price: '$65 / $70'  },
-      { name: 'Caramel Macchiato',                    price: '$65 / $70'  },
+      { name: 'Caramel Macchiato',                    price: '$65 / $70', srcs: ['media/caramel-macchiato1.jpg','media/caramel-macchiato2.jpg'], desc: 'Intenso por debajo, aterciopelado en cada sorbo. Espresso que se abre paso entre leche caliente y cremosa, coronado con caramelo que lo lleva al límite exacto de lo dulce. Entera, deslactosada, de almendra o de coco — tú eliges la leche, nosotros hacemos el resto.' },
       { name: 'Leche Dorada',                         price: '$65 / $70'  },
       { name: 'Dirty Chai',                           price: '$70 / $75'  },
       { name: 'Chocolate de Metate', sub: 'Agua',     price: '$60 / $65'  },
@@ -85,7 +85,7 @@ const MENU = [
     title: 'Panadería',
     items: [
       { name: 'Concha',             price: '$30' },
-      { name: 'Brownie',            price: '$45' },
+      { name: 'Brownie',            price: '$45', src: 'media/brownie1.jpg', desc: 'Húmedo por dentro, firme en cada mordida. Brownie de chocolate oscuro con almendra escondida en el corazón. El azúcar glass al final lo equilibra todo.' },
       { name: 'Croissant',          price: '$45' },
       { name: 'Chocolatín',         price: '$45' },
       { name: 'Rol con Chispas',    price: '$45' },
@@ -105,7 +105,7 @@ const MENU = [
     id:    'wraps',
     title: 'Wraps &\nEnsaladas',
     items: [
-      { name: 'Wrap',     sub: 'Pollo chipotle · Pollo finas hierbas · Pavo · Atún', price: '$95' },
+      { name: 'Wrap',     sub: 'Pollo chipotle · Pollo finas hierbas · Pavo · Atún', price: '$95', srcs: ['media/wrap1.jpg','media/wrap2.jpg','media/wrap3.jpg'], desc: 'Crujiente en cada vuelta, fresco en cada capa. Tortilla de harina, chipotle o nopal cargada con lechuga, zanahoria rallada, morrón de colores, jitomate y queso manchego. Elige tu aderezo —César, ranch, mil islas o chipotle— y los chips al lado hacen el cierre perfecto.' },
       { name: 'Ensalada', sub: 'Pollo · Atún',                                       price: '$95' },
     ]
   },
