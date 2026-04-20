@@ -11,3 +11,17 @@ node_modules/
 
 # Archivos de entorno (contraseñas/llaves)
 .env
+
+# Originales pesados — respaldados en ../_originales_backup/
+# (el sitio solo usa las versiones comprimidas en media/)
+/videos/
+/*.mov
+/BROWNIE*.jpg
+/CARAMEL*.jpg
+/CHAPATA*.jpg
+/ESPRESSO*.jpg
+/FRANGIPANE*.jpg
+/PINK*.jpg
+/ROL*.jpg
+/TARO*.jpg
+/WRAP*.jpg
