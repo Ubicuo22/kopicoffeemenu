@@ -40,6 +40,18 @@ body  {
   pointer-events: none;
   z-index: 0;
   opacity: 0.18;
+  will-change: opacity;
+}
+
+/* En móviles el SVG blureado es caro para el GPU: lo ocultamos */
+@media (max-width: 640px) {
+  .vapor-bg { display: none; }
+}
+
+/* Acelera el pintado de secciones offscreen */
+#menu-container section {
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
 }
 
 /* ════════════════════════════════
