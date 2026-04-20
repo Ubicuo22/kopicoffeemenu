@@ -67,15 +67,15 @@ function buildDetailPanel(item) {
   if (item.dataset.srcs) {
     const srcs = JSON.parse(item.dataset.srcs);
     const slides = srcs.map((s, i) =>
-      `<img src="${s}" alt="" loading="lazy" class="carousel-slide${i === 0 ? ' active' : ''}">`
+      `<img src="${s}" alt="" width="1080" height="1080" loading="lazy" decoding="async" class="carousel-slide${i === 0 ? ' active' : ''}">`
     ).join('');
     mediaEl = `<div class="detail-carousel">${slides}</div>`;
   } else {
     const src  = item.dataset.src  || PLACEHOLDER;
     const type = item.dataset.type || 'image';
     mediaEl = type === 'video'
-      ? `<video src="${src}" autoplay muted loop playsinline preload="none"></video>`
-      : `<img src="${src}" alt="" loading="lazy">`;
+      ? `<video src="${src}" muted loop playsinline preload="metadata" width="1080" height="1080"></video>`
+      : `<img src="${src}" alt="" width="1080" height="1080" loading="lazy" decoding="async">`;
   }
 
   const panel = document.createElement('div');
@@ -86,19 +86,30 @@ function buildDetailPanel(item) {
       <div class="detail-desc"><p data-text="${desc}"></p></div>
     </div>`;
 
-  // Iniciar rotación del carousel
-  const carousel = panel.querySelector('.detail-carousel');
-  if (carousel) {
-    const slides = carousel.querySelectorAll('.carousel-slide');
-    let current = 0;
-    setInterval(() => {
-      slides[current].classList.remove('active');
-      current = (current + 1) % slides.length;
-      slides[current].classList.add('active');
-    }, 2800);
-  }
-
   return panel;
+}
+
+// ── Inicia rotación del carrusel respetando abrir/cerrar ──
+function startCarousel(item) {
+  const carousel = item.querySelector('.detail-carousel');
+  if (!carousel || carousel.dataset.intervalId) return;
+  const slides = carousel.querySelectorAll('.carousel-slide');
+  if (slides.length < 2) return;
+  let current = 0;
+  const id = setInterval(() => {
+    if (!item.classList.contains('open')) return;
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 2800);
+  carousel.dataset.intervalId = String(id);
+}
+
+function stopCarousel(item) {
+  const carousel = item.querySelector('.detail-carousel');
+  if (!carousel || !carousel.dataset.intervalId) return;
+  clearInterval(Number(carousel.dataset.intervalId));
+  delete carousel.dataset.intervalId;
 }
 
 // ── Construye una sección completa del menú ──
@@ -207,8 +218,13 @@ function initExpandables() {
       const item   = row.closest('.item');
       const isOpen = item.classList.contains('open');
 
-      // Cierra todos
-      document.querySelectorAll('.item.open').forEach(i => i.classList.remove('open'));
+      // Cierra todos (y detiene sus carruseles / videos)
+      document.querySelectorAll('.item.open').forEach(i => {
+        i.classList.remove('open');
+        stopCarousel(i);
+        const v = i.querySelector('.detail-media video');
+        if (v) { try { v.pause(); } catch (_) {} }
+      });
 
       if (!isOpen) {
         // Construye el panel solo la primera vez (lazy)
@@ -216,6 +232,11 @@ function initExpandables() {
           item.appendChild(buildDetailPanel(item));
         }
         item.classList.add('open');
+        startCarousel(item);
+
+        // Reproducir video si existe
+        const v = item.querySelector('.detail-media video');
+        if (v) { try { v.play(); } catch (_) {} }
 
         // Animar descripción como máquina de escribir
         const p = item.querySelector('.detail-desc p');
