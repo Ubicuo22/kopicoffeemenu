@@ -60,7 +60,7 @@ body  {
 header {
   position: relative;
   z-index: 10;
-  min-height: 100vh;
+  min-height: 65vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -219,7 +219,7 @@ nav a {
 }
 
 nav a:hover  { color: var(--white); background: #111; }
-nav a.active { color: var(--white); border-bottom: 2px solid var(--white); }
+nav a.active { color: var(--white); border-bottom: 2px solid var(--pink); }
 
 /* ════════════════════════════════
    SECCIONES
@@ -326,7 +326,7 @@ section {
   font-weight: 800;
   font-size: 20px;
   letter-spacing: 0.02em;
-  color: #ccc;
+  color: #ddd;
   transition: color 0.15s;
   flex: 1;
 }
@@ -351,9 +351,26 @@ section {
   font-weight: 800;
   font-size: 20px;
   letter-spacing: 0.02em;
-  color: #888;
+  color: var(--white);
   transition: color 0.15s;
   white-space: nowrap;
+}
+
+/* Badge popular */
+.item-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pink);
+  border: 1px solid rgba(255, 62, 165, 0.4);
+  border-radius: 999px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-family: 'Space Mono', monospace;
 }
 
 /* Botón + / × */
@@ -653,6 +670,7 @@ footer p {
   section    { padding: 60px 24px; }
   nav a      { padding: 16px 16px; }
   header     {
+    min-height: 55vh;
     background-image:
       linear-gradient(rgba(10,10,10,0.84), rgba(10,10,10,0.84)),
       url('../movil.jpg');
@@ -660,8 +678,9 @@ footer p {
 }
 
 @media (max-width: 480px) {
-  .detail-media           { width: 44%; }
-  .item.open .item-detail { max-height: 600px; }
+  .detail-inner           { flex-direction: column; }
+  .detail-media           { width: 100%; aspect-ratio: 4 / 3; }
+  .item.open .item-detail { max-height: 800px; }
   .detail-desc p          { font-size: 12px; }
 }
 
