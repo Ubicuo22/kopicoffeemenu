@@ -10,7 +10,7 @@ const PLACEHOLDER  = 'media/producto_generico.png';
 const DESC_DEFAULT = 'Elaborado con ingredientes seleccionados. Una experiencia diseñada para el momento justo.';
 
 // ── Construye un elemento .item a partir de los datos ──
-function buildItem(data) {
+function buildItem(data, hidePrice = false) {
   const item = document.createElement('div');
   item.className = 'item';
   item.dataset.name = data.name;
@@ -21,11 +21,15 @@ function buildItem(data) {
   if (data.desc) item.dataset.desc = data.desc;
   if (data.srcs) item.dataset.srcs = JSON.stringify(data.srcs);
 
-  const nameSub = data.sub
-    ? `${data.name} <span class="item-sub">${data.sub}</span>`
-    : data.name;
+  const badge = data.popular
+    ? ` <span class="item-badge">popular</span>`
+    : '';
 
-  const priceHtml = data.price
+  const nameSub = data.sub
+    ? `${data.name}${badge} <span class="item-sub">${data.sub}</span>`
+    : `${data.name}${badge}`;
+
+  const priceHtml = (!hidePrice && data.price)
     ? `<span class="item-dots"></span><span class="item-price">${data.price}</span>`
     : '';
 
@@ -217,8 +221,8 @@ function buildSection(section) {
     const col1 = section.items.slice(0, half);
     const col2 = section.items.slice(half);
 
-    const listA = col1.map(buildItem).map(i => i.outerHTML).join('');
-    const listB = col2.map(buildItem).map(i => i.outerHTML).join('');
+    const listA = col1.map(d => buildItem(d, true)).map(i => i.outerHTML).join('');
+    const listB = col2.map(d => buildItem(d, true)).map(i => i.outerHTML).join('');
 
     header += `
       <div class="item-grid reveal">
@@ -226,7 +230,7 @@ function buildSection(section) {
         <div class="item-list">${listB}</div>
       </div>`;
   } else {
-    const listHTML = section.items.map(buildItem).map(i => i.outerHTML).join('');
+    const listHTML = section.items.map(d => buildItem(d, false)).map(i => i.outerHTML).join('');
     header += `<div class="item-list reveal">${listHTML}</div>`;
   }
 
@@ -350,7 +354,8 @@ function initActiveNav() {
         const active = document.querySelector(`#main-nav a[href="#${entry.target.id}"]`);
         if (active) {
           active.classList.add('active');
-          active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          const mainNav = document.getElementById('main-nav');
+          if (mainNav) mainNav.scrollLeft = active.offsetLeft - mainNav.offsetWidth / 2 + active.offsetWidth / 2;
         }
       }
     });
